@@ -10,17 +10,14 @@ load_hw = function() {
   }).then(function(res) {
     return res.json();
   }).then(function(res) {
-    var i, len, predmet, results;
-    results = [];
+    var appendTo, i, len, predmet;
     for (i = 0, len = res.length; i < len; i++) {
       predmet = res[i];
-      if (predmet.subject.match(/1$/)) {
-        results.push($(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($('#hw1').controlgroup("container")));
-      } else {
-        results.push($(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($('#hw2').controlgroup("container")));
-      }
+      appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
+      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($(appendTo));
     }
-    return results;
+    $('#hw1 #hw2').collapsibleset('refresh');
+    return $.mobile.loading('hide');
   });
 };
 
@@ -61,20 +58,21 @@ role_change = function() {
 };
 
 $(function() {
+  $.mobile.loading('show');
   load_hw();
   if (navigator.serviceWorker != null) {
     console.log('service worker found');
     navigator.serviceWorker.register('/sw.js').then(function() {
       return console.log('wervice worker enabled');
+    }).catch(function(e) {
+      return console.error(e);
     });
   }
   if (localStorage.role == null) {
     localStorage.role = 'role_default';
   }
   $('input[type=radio][name=role]').change(function() {
-    var choice;
-    choice = $(this).attr('id');
-    localStorage.role = choice;
+    localStorage.role = $(this).attr('id');
     return role_change();
   });
   $('#settings div a[data-icon=back]').on('click', user_action);

@@ -6,10 +6,10 @@ load_hw = ->
   .then (res) -> res.json()
   .then (res) ->
     for predmet in res
-      if predmet.subject.match /1$/
-        $("<div data-role=\"collapsible\" data-filtertext=\"#{predmet.subject}\">").html("<h3>#{predmet.subject}</h3>#{predmet.body}").appendTo($('#hw1').controlgroup("container"))
-      else
-        $("<div data-role=\"collapsible\" data-filtertext=\"#{predmet.subject}\">").html("<h3>#{predmet.subject}</h3>#{predmet.body}").appendTo($('#hw2').controlgroup("container"))
+      appendTo = if predmet.subject.match(/1$/) then '#hw1' else '#hw2'
+      $("<div data-role=\"collapsible\" data-filtertext=\"#{predmet.subject}\">").html("<h3>#{predmet.subject}</h3>#{predmet.body}").appendTo($(appendTo))
+    $('#hw1 #hw2').collapsibleset('refresh')
+    $.mobile.loading('hide')
 
 init_chat = ->
 
@@ -40,15 +40,18 @@ role_change = ->
     user_action_btn.show()
 
 $ ->
+  $.mobile.loading('show')
   load_hw()
   if navigator.serviceWorker?
     console.log 'service worker found'
-    navigator.serviceWorker.register('/sw.js').then ->
-      console.log 'wervice worker enabled'
+    navigator.serviceWorker.register('/sw.js')
+    .then ->
+      console.log('wervice worker enabled')
+    .catch (e) ->
+      console.error(e)
   localStorage.role ?= 'role_default'
   $('input[type=radio][name=role]').change ->
-    choice = $(this).attr('id')
-    localStorage.role = choice
+    localStorage.role = $(this).attr('id')
     role_change()
   $('#settings div a[data-icon=back]').on 'click', user_action
   $(document).on 'swiperight', '.ui-page', ->
