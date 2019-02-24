@@ -10,6 +10,8 @@ load_hw = ->
       $("<div data-role=\"collapsible\" data-filtertext=\"#{predmet.subject}\">").html("<h3>#{predmet.subject}</h3>#{predmet.body}").appendTo($(appendTo))
     $('#hw1 #hw2').collapsibleset('refresh')
     $.mobile.loading('hide')
+  .catch (e) ->
+    console.error(e)
 
 init_chat = ->
 
@@ -40,7 +42,7 @@ role_change = ->
     user_action_btn.show()
 
 $ ->
-  $.mobile.loading('show')
+  $.mobile.loading 'show', textVisible: true, text: "Загрузка..."
   load_hw()
   if navigator.serviceWorker?
     console.log 'service worker found'

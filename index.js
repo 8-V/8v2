@@ -18,6 +18,8 @@ load_hw = function() {
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     return $.mobile.loading('hide');
+  }).catch(function(e) {
+    return console.error(e);
   });
 };
 
@@ -58,7 +60,10 @@ role_change = function() {
 };
 
 $(function() {
-  $.mobile.loading('show');
+  $.mobile.loading('show', {
+    textVisible: true,
+    text: "Загрузка..."
+  });
   load_hw();
   if (navigator.serviceWorker != null) {
     console.log('service worker found');
