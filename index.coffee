@@ -12,8 +12,19 @@ load_hw = ->
     $.mobile.loading('hide')
   .catch (e) ->
     console.error(e)
-
 init_chat = ->
+
+calc_food = ->
+  result = $('#food-result')
+  count_by = []
+  count = count_by['35'] = count_by['30'] = count_by['5'] = count_by['0'] = 0
+  $('#food-group').controlgroup().children().children().each (child) ->
+    child = $(child)
+    if child.attr('checked') == 'checked'
+      count_by[child.atr('name')]++
+      count++
+  result.html("<p>#{count} человек</p><p>#{count_by['0']} бесплатников</p><p>#{count_by['5']} по 5 грн</p><p>#{count_by['30']} по 30 грн</p><p>#{count_by['35']} по 35</p>")
+  count_by
 
 role_change = ->
   user_action_btn = $('#user_action')
@@ -59,4 +70,6 @@ $ ->
   $(document).on 'swiperight', '.ui-page', ->
     $('#settings-panel').panel 'open'
   $('a[href=#chat]').on 'click', init_chat
+  $('#food-group').controlgroup().children().children().each (child) ->
+    $(child).on 'change', calc_food
   role_change()

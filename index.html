@@ -80,7 +80,43 @@
       <h1>Счетчик порций</h1>
     </div>
     <div role="main" class="ui-content">
-      <p>Ты вроде хотел прислать?</p>
+      <form>
+        <div data-role="collapsible">
+          <h4>Отметить</h4>
+          <p>
+            <fieldset data-role="controlgroup" id="food-group">
+              <label><input type="checkbox" id="gaiduk" name="35">Гайдук</label>
+              <label><input type="checkbox" id="egorov" name="30">Егоров</label>
+              <label><input type="checkbox" id="kurilenko" name="35">Куриленко</label>
+              <label><input type="checkbox" id="markov" name="30">Марков</label>
+              <label><input type="checkbox" id="mironenko" name="35">Мироненко</label>
+              <label><input type="checkbox" id="miroshnichenko" name="30">Мирошниченко</label>
+              <label><input type="checkbox" id="mineeva" name="0">Минеева</label>
+              <label><input type="checkbox" id="user" name="35">Мордак</label>
+              <label><input type="checkbox" id="olekseenko" name="35">Олексеенко</label>
+              <label><input type="checkbox" id="omelchenko" name="5">Омельченко</label>
+              <label><input type="checkbox" id="pavlenko" name="30">Павленко</label>
+              <label><input type="checkbox" id="chursinov" name="35">Чурсинов</label>
+              <label><input type="checkbox" id="poet" name="35">Высоцкий</label>
+              <label><input type="checkbox" id="katrich" name="30">Катрич</label>
+              <label><input type="checkbox" id="morozov" name="35">Морозов</label>
+              <label><input type="checkbox" id="proxorenko" name="0">Прохоренко</label>
+              <label><input type="checkbox" id="ribchenko" name="30">Рыбченко</label>
+              <label><input type="checkbox" id="sapin" name="35">Сапин</label>
+              <label><input type="checkbox" id="smituk" name="35">Смитюк</label>
+              <label><input type="checkbox" id="sukorukih" name="30">Сухоруких</label>
+              <label><input type="checkbox" id="maschenko" name="30">Мащенко</label>
+              <label><input type="checkbox" id="genius" name="30">Хорсун</label>
+              <label><input type="checkbox" id="chub" name="35">Чуб</label>
+              <label><input type="checkbox" id="taras" name="30">Тарас</label>
+            </fieldset>
+          </p>
+        </div>
+        <div data-role="collapsible">
+          <h4>Результат</h4>
+          <p id="food-result"></p>
+        </div>
+      </form>
     </div>
   </div>
   <div data-role="page" id="chat">

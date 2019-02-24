@@ -1,4 +1,4 @@
-var init_chat, load_hw, role_change;
+var calc_food, init_chat, load_hw, role_change;
 
 load_hw = function() {
   return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
@@ -24,6 +24,22 @@ load_hw = function() {
 };
 
 init_chat = function() {};
+
+calc_food = function() {
+  var count, count_by, result;
+  result = $('#food-result');
+  count_by = [];
+  count = count_by['35'] = count_by['30'] = count_by['5'] = count_by['0'] = 0;
+  $('#food-group').controlgroup().children().children().each(function(child) {
+    child = $(child);
+    if (child.attr('checked') === 'checked') {
+      count_by[child.atr('name')]++;
+      return count++;
+    }
+  });
+  result.html(`<p>${count} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p>`);
+  return count_by;
+};
 
 role_change = function() {
   var role, role_friendly_names, role_icons, role_urls, user_action_btn;
@@ -85,5 +101,8 @@ $(function() {
     return $('#settings-panel').panel('open');
   });
   $('a[href=#chat]').on('click', init_chat);
+  $('#food-group').controlgroup().children().children().each(function(child) {
+    return $(child).on('change', calc_food);
+  });
   return role_change();
 });
