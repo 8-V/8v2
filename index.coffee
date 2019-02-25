@@ -10,8 +10,10 @@ load_hw = ->
       $("<div data-role=\"collapsible\" data-filtertext=\"#{predmet.subject}\">").html("<h3>#{predmet.subject}</h3>#{predmet.body}").appendTo($(appendTo))
     $('#hw1 #hw2').collapsibleset('refresh')
     $.mobile.loading('hide')
+    return
   .catch (e) ->
     console.error(e)
+    return
 init_chat = ->
 
 calc_food = ->
@@ -56,6 +58,7 @@ role_change = ->
     user_action_btn.html role_friendly_names[role]
     user_action_btn.buttonMarkup icon: role_icons[role]
     user_action_btn.show()
+    return
 
 $ ->
   $.mobile.loading 'show', textVisible: true, text: "Загрузка..."
@@ -65,16 +68,21 @@ $ ->
     navigator.serviceWorker.register('/sw.js')
     .then ->
       console.log('wervice worker enabled')
+      return
     .catch (e) ->
       console.error(e)
+      return
   localStorage.role ?= 'role_default'
   $('input[type=radio][name=role]').change ->
     localStorage.role = $(this).attr('id')
     role_change()
+    return
   $('#settings div a[data-icon=back]').on 'click', user_action
   $(document).on 'swiperight', '.ui-page', ->
     $('#settings-panel').panel 'open'
+    return
   $('a[href=#chat]').on 'click', init_chat
   for child in $('#food-group').controlgroup().children().children()
     $(child).on 'change', calc_food
   role_change()
+  return

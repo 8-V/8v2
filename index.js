@@ -17,9 +17,9 @@ load_hw = function() {
       $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
-    return $.mobile.loading('hide');
+    $.mobile.loading('hide');
   }).catch(function(e) {
-    return console.error(e);
+    console.error(e);
   });
 };
 
@@ -83,7 +83,7 @@ role_change = function() {
     user_action_btn.buttonMarkup({
       icon: role_icons[role]
     });
-    return user_action_btn.show();
+    user_action_btn.show();
   }
 };
 
@@ -97,9 +97,9 @@ $(function() {
   if ((navigator.serviceWorker != null) && false) {
     console.log('service worker found');
     navigator.serviceWorker.register('/sw.js').then(function() {
-      return console.log('wervice worker enabled');
+      console.log('wervice worker enabled');
     }).catch(function(e) {
-      return console.error(e);
+      console.error(e);
     });
   }
   if (localStorage.role == null) {
@@ -107,11 +107,11 @@ $(function() {
   }
   $('input[type=radio][name=role]').change(function() {
     localStorage.role = $(this).attr('id');
-    return role_change();
+    role_change();
   });
   $('#settings div a[data-icon=back]').on('click', user_action);
   $(document).on('swiperight', '.ui-page', function() {
-    return $('#settings-panel').panel('open');
+    $('#settings-panel').panel('open');
   });
   $('a[href=#chat]').on('click', init_chat);
   ref = $('#food-group').controlgroup().children().children();
@@ -119,5 +119,5 @@ $(function() {
     child = ref[j];
     $(child).on('change', calc_food);
   }
-  return role_change();
+  role_change();
 });
