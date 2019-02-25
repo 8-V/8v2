@@ -10,9 +10,9 @@ load_hw = function() {
   }).then(function(res) {
     return res.json();
   }).then(function(res) {
-    var appendTo, i, len, predmet;
-    for (i = 0, len = res.length; i < len; i++) {
-      predmet = res[i];
+    var appendTo, j, len, predmet;
+    for (j = 0, len = res.length; j < len; j++) {
+      predmet = res[j];
       appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
       $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($(appendTo));
     }
@@ -26,19 +26,31 @@ load_hw = function() {
 init_chat = function() {};
 
 calc_food = function() {
-  var count, count_by, result;
+  var child, count, count_by, i, j, k, len, len1, ref, ref1, result;
   result = $('#food-result');
-  count_by = [];
-  count = count_by['35'] = count_by['30'] = count_by['5'] = count_by['0'] = 0;
-  $('#food-group').controlgroup().children().children().each(function(child) {
-    child = $(child);
-    if (child.attr('checked') === 'checked') {
-      count_by[child.atr('name')]++;
-      return count++;
+  count_by = {
+    '0': 0,
+    '5': 0,
+    '30': 0,
+    '35': 0
+  };
+  count = 0;
+  ref = $('#food-group').controlgroup().children().children();
+  for (j = 0, len = ref.length; j < len; j++) {
+    child = ref[j];
+    child = $($(child).children()[1]);
+    console.log(child);
+    if (child.checked) {
+      count_by[child.attr('name')]++;
     }
-  });
-  result.html(`<p>${count} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p>`);
-  return count_by;
+  }
+  ref1 = [0, 5, 30, 35];
+  for (k = 0, len1 = ref1.length; k < len1; k++) {
+    i = ref1[k];
+    count += count_by[i];
+  }
+  console.log(count_by);
+  return result.html(`<p>${count} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p>`);
 };
 
 role_change = function() {
@@ -76,12 +88,13 @@ role_change = function() {
 };
 
 $(function() {
+  var child, j, len, ref;
   $.mobile.loading('show', {
     textVisible: true,
     text: "Загрузка..."
   });
   load_hw();
-  if (navigator.serviceWorker != null) {
+  if ((navigator.serviceWorker != null) && false) {
     console.log('service worker found');
     navigator.serviceWorker.register('/sw.js').then(function() {
       return console.log('wervice worker enabled');
@@ -101,8 +114,10 @@ $(function() {
     return $('#settings-panel').panel('open');
   });
   $('a[href=#chat]').on('click', init_chat);
-  $('#food-group').controlgroup().children().children().each(function(child) {
-    return $(child).on('change', calc_food);
-  });
+  ref = $('#food-group').controlgroup().children().children();
+  for (j = 0, len = ref.length; j < len; j++) {
+    child = ref[j];
+    $(child).on('change', calc_food);
+  }
   return role_change();
 });
