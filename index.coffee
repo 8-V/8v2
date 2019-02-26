@@ -24,14 +24,13 @@ calc_food = ->
     '30': 0
     '35': 0
   count= 0
-  for child in $('#food-group').controlgroup().children().children()
-    child = $(child)
-    console.log(child)
-    count_by[child.attr('name')]++ if child.checked
-  for i in [0, 5, 30, 35]
-    count += count_by[i]
+  for i in $('#food-group').controlgroup().children().children()
+    i = i.childNodes[1]
+    count_by[i.name]++ if i.checked
   console.log(count_by)
-  result.html("<p>#{count} человек</p><p>#{count_by['0']} бесплатников</p><p>#{count_by['5']} по 5 грн</p><p>#{count_by['30']} по 30 грн</p><p>#{count_by['35']} по 35</p>")
+  price = count_by['5'] * 5 + count_by['30'] * 30 + count_by['35'] * 35
+  result.html("<p>#{count_by['0']+count_by['5']+count_by['30']+count_by['35']} человек</p><p>#{count_by['0']} бесплатников</p><p>#{count_by['5']} по 5 грн</p><p>#{count_by['30']} по 30 грн</p><p>#{count_by['35']} по 35</p><p>Итого #{price} грн.</p>")
+  return
 
 role_change = ->
   user_action_btn = $('#user_action')

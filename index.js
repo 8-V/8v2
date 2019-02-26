@@ -26,7 +26,7 @@ load_hw = function() {
 init_chat = function() {};
 
 calc_food = function() {
-  var child, count, count_by, i, j, k, len, len1, ref, ref1, result;
+  var count, count_by, i, j, len, price, ref, result;
   result = $('#food-result');
   count_by = {
     '0': 0,
@@ -37,20 +37,15 @@ calc_food = function() {
   count = 0;
   ref = $('#food-group').controlgroup().children().children();
   for (j = 0, len = ref.length; j < len; j++) {
-    child = ref[j];
-    child = $(child);
-    console.log(child);
-    if (child.checked) {
-      count_by[child.attr('name')]++;
+    i = ref[j];
+    i = i.childNodes[1];
+    if (i.checked) {
+      count_by[i.name]++;
     }
   }
-  ref1 = [0, 5, 30, 35];
-  for (k = 0, len1 = ref1.length; k < len1; k++) {
-    i = ref1[k];
-    count += count_by[i];
-  }
   console.log(count_by);
-  return result.html(`<p>${count} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p>`);
+  price = count_by['5'] * 5 + count_by['30'] * 30 + count_by['35'] * 35;
+  result.html(`<p>${count_by['0'] + count_by['5'] + count_by['30'] + count_by['35']} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p><p>Итого ${price} грн.</p>`);
 };
 
 role_change = function() {
