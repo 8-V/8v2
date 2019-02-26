@@ -39,7 +39,7 @@ calc_food = function() {
   for (j = 0, len = ref.length; j < len; j++) {
     i = ref[j];
     i = i.childNodes[1];
-    if (i.checked) {
+    if (!i.checked) {
       count_by[i.name]++;
     }
   }

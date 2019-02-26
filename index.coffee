@@ -26,7 +26,7 @@ calc_food = ->
   count= 0
   for i in $('#food-group').controlgroup().children().children()
     i = i.childNodes[1]
-    count_by[i.name]++ if i.checked
+    count_by[i.name]++ if not i.checked
   console.log(count_by)
   price = count_by['5'] * 5 + count_by['30'] * 30 + count_by['35'] * 35
   result.html("<p>#{count_by['0']+count_by['5']+count_by['30']+count_by['35']} человек</p><p>#{count_by['0']} бесплатников</p><p>#{count_by['5']} по 5 грн</p><p>#{count_by['30']} по 30 грн</p><p>#{count_by['35']} по 35</p><p>Итого #{price} грн.</p>")
