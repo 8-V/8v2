@@ -25,7 +25,7 @@ calc_food = ->
     '35': 0
   count= 0
   for child in $('#food-group').controlgroup().children().children()
-    child = $($(child).children()[1])
+    child = $(child)
     console.log(child)
     count_by[child.attr('name')]++ if child.checked
   for i in [0, 5, 30, 35]

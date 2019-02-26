@@ -38,7 +38,7 @@ calc_food = function() {
   ref = $('#food-group').controlgroup().children().children();
   for (j = 0, len = ref.length; j < len; j++) {
     child = ref[j];
-    child = $($(child).children()[1]);
+    child = $(child);
     console.log(child);
     if (child.checked) {
       count_by[child.attr('name')]++;
