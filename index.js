@@ -86,7 +86,7 @@ $(function() {
   var child, j, len, ref;
   $.mobile.loading('show', {
     textVisible: true,
-    text: "Загрузка..."
+    text: "Загрузка домашки..."
   });
   load_hw();
   if ((navigator.serviceWorker != null) && false) {

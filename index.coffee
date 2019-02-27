@@ -60,7 +60,7 @@ role_change = ->
     return
 
 $ ->
-  $.mobile.loading 'show', textVisible: true, text: "Загрузка..."
+  $.mobile.loading 'show', textVisible: true, text: "Загрузка домашки..."
   load_hw()
   if navigator.serviceWorker? && false
     console.log 'service worker found'
