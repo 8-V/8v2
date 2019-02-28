@@ -1,4 +1,20 @@
-var calc_food, init_chat, load_hw, role_change;
+var calc_food, clear_cache, init_chat, load_hw, role_change;
+
+clear_cache = function() {
+  if (navigator.serviceWorker == null) {
+    console.error('Cant remove cache');
+    return;
+  }
+  return navigator.serviceWorker.getRegistrations().then(function(x) {
+    var i, j, len;
+    for (j = 0, len = x.length; j < len; j++) {
+      i = x[j];
+      i.unregister();
+    }
+  }).catch(function(e) {
+    return console.error(e);
+  });
+};
 
 load_hw = function() {
   return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {

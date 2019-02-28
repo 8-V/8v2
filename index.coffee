@@ -1,3 +1,14 @@
+clear_cache = ->
+  if not navigator.serviceWorker?
+    console.error 'Cant remove cache'
+    return
+  navigator.serviceWorker.getRegistrations()
+  .then (x) ->
+    for i in x
+      i.unregister()
+    return
+  .catch (e) ->
+    console.error e
 load_hw = ->
   fetch 'https://homework-63c7.restdb.io/rest/email_inbound',
     method: 'GET'
