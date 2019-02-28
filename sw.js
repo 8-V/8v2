@@ -1,5 +1,5 @@
 var cacheName = '28-02';
-var filesToCache = ['/', '/index', '/index.html', '/index.js'];
+var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico'];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
