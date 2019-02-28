@@ -21,6 +21,9 @@ self.addEventListener('activate', function(e) {
         }
       }));
     })
+    .catch(function(e) {
+      console.error(e);
+    })
   );
   return self.clients.claim();
 });
