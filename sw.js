@@ -1,5 +1,5 @@
 var cacheName = '28-02-19';
-var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico', 'https://code.jquery.com/mobile/1.4.5/images/ajax-loader.gif'];
+var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico'];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');

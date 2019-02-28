@@ -63,11 +63,7 @@ $ ->
   $.mobile.loading 'show', textVisible: true, text: "Загрузка домашки..."
   load_hw()
   if navigator.serviceWorker?
-    console.log 'service worker found'
-    navigator.serviceWorker.register('/sw.js')
-    .then ->
-      console.log('wervice worker enabled')
-      return
+    navigator.serviceWorker.register '/sw.js'
     .catch (e) ->
       console.error(e)
       return

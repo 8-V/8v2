@@ -90,10 +90,7 @@ $(function() {
   });
   load_hw();
   if (navigator.serviceWorker != null) {
-    console.log('service worker found');
-    navigator.serviceWorker.register('/sw.js').then(function() {
-      console.log('wervice worker enabled');
-    }).catch(function(e) {
+    navigator.serviceWorker.register('/sw.js').catch(function(e) {
       console.error(e);
     });
   }
