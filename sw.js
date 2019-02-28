@@ -1,5 +1,5 @@
-var cacheName = '23-02';
-var filesToCache = ['/*'];
+var cacheName = '28-02';
+var filesToCache = ['/', '/index', '/index.html', '/index.js'];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
