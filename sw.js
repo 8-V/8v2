@@ -1,4 +1,4 @@
-var cacheName = '28-02-19';
+var cacheName = '1';
 var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico'];
 
 self.addEventListener('install', function(e) {
