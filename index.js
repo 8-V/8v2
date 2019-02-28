@@ -105,7 +105,7 @@ $(function() {
     text: "Загрузка домашки..."
   });
   load_hw();
-  $('[data-netlify-identity-button]').enchanceWithin();
+  $('[data-netlify-identity-button]').enhanceWithin();
   if ((navigator.serviceWorker != null) && false) {
     navigator.serviceWorker.register('/sw.js').catch(function(e) {
       console.error(e);

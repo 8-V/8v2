@@ -73,7 +73,7 @@ role_change = ->
 $ ->
   $.mobile.loading 'show', textVisible: true, text: "Загрузка домашки..."
   load_hw()
-  $('[data-netlify-identity-button]').enchanceWithin()
+  $('[data-netlify-identity-button]').enhanceWithin()
   if navigator.serviceWorker? && false
     navigator.serviceWorker.register '/sw.js'
     .catch (e) ->
