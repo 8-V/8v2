@@ -1,5 +1,5 @@
 var cacheName = '23-02';
-var filesToCache = ['/', '/index.js', '/manifest.json'];
+var filesToCache = ['/*'];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
