@@ -89,7 +89,7 @@ $(function() {
     text: "Загрузка домашки..."
   });
   load_hw();
-  if (navigator.serviceWorker != null) {
+  if ((navigator.serviceWorker != null) && false) {
     navigator.serviceWorker.register('/sw.js').catch(function(e) {
       console.error(e);
     });
