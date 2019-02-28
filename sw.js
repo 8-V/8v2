@@ -1,4 +1,4 @@
-var cacheName = '2';
+var cacheName = '3';
 var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico'];
 
 self.addEventListener('install', function(e) {
