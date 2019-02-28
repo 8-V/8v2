@@ -89,7 +89,7 @@ $(function() {
     text: "Загрузка домашки..."
   });
   load_hw();
-  if ((navigator.serviceWorker != null) && false) {
+  if (navigator.serviceWorker != null) {
     console.log('service worker found');
     navigator.serviceWorker.register('/sw.js').then(function() {
       console.log('wervice worker enabled');

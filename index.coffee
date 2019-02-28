@@ -62,7 +62,7 @@ role_change = ->
 $ ->
   $.mobile.loading 'show', textVisible: true, text: "Загрузка домашки..."
   load_hw()
-  if navigator.serviceWorker? && false
+  if navigator.serviceWorker?
     console.log 'service worker found'
     navigator.serviceWorker.register('/sw.js')
     .then ->
