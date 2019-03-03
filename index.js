@@ -1,31 +1,31 @@
 var calc_food, clear_cache, init_chat, load_hw, role_change;
 
-clear_cache = function() {
+clear_cache = function () {
   if (navigator.serviceWorker == null) {
     console.error('Cant remove cache');
     return;
   }
-  return navigator.serviceWorker.getRegistrations().then(function(x) {
+  return navigator.serviceWorker.getRegistrations().then(function (x) {
     var i, j, len;
     for (j = 0, len = x.length; j < len; j++) {
       i = x[j];
       i.unregister();
     }
-  }).catch(function(e) {
+  }).catch(function (e) {
     return console.error(e);
   });
 };
 
-load_hw = function() {
+load_hw = function () {
   return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
     method: 'GET',
     cache: 'no-cache',
     headers: {
       'x-apikey': '5c6ecf1828ca2e129e8696e8'
     }
-  }).then(function(res) {
+  }).then(function (res) {
     return res.json();
-  }).then(function(res) {
+  }).then(function (res) {
     var appendTo, j, len, predmet;
     for (j = 0, len = res.length; j < len; j++) {
       predmet = res[j];
@@ -33,16 +33,15 @@ load_hw = function() {
       $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
-    $.mobile.loading('hide');
     $.unblockUI();
-  }).catch(function(e) {
+  }).catch(function (e) {
     console.error(e);
   });
 };
 
-init_chat = function() {};
+init_chat = function () { };
 
-calc_food = function() {
+calc_food = function () {
   var count, count_by, i, j, len, price, ref, result;
   result = $('#food-result');
   count_by = {
@@ -65,7 +64,7 @@ calc_food = function() {
   result.html(`<p>${count_by['0'] + count_by['5'] + count_by['30'] + count_by['35']} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p><p>Итого ${price} грн.</p>`);
 };
 
-role_change = function() {
+role_change = function () {
   var role, role_friendly_names, role_icons, role_urls, user_action_btn;
   user_action_btn = $('#user_action');
   user_action_btn.hide();
@@ -99,29 +98,25 @@ role_change = function() {
   }
 };
 
-$(function() {
+$(function () {
   var child, j, len, ref;
-  $.mobile.loading('show', {
-    textVisible: true,
-    text: "Загрузка домашки..."
-  });
-  $.blockUI();
+  $.blockUI({ message: 'Загрузка домашки...' });
   load_hw();
   $('[data-netlify-identity-button]').enhanceWithin();
   if ((navigator.serviceWorker != null) && false) {
-    navigator.serviceWorker.register('/sw.js').catch(function(e) {
+    navigator.serviceWorker.register('/sw.js').catch(function (e) {
       console.error(e);
     });
   }
   if (localStorage.role == null) {
     localStorage.role = 'role_default';
   }
-  $('input[type=radio][name=role]').change(function() {
+  $('input[type=radio][name=role]').change(function () {
     localStorage.role = $(this).attr('id');
     role_change();
   });
   $('#settings div a[data-icon=back]').on('click', user_action);
-  $(document).on('swiperight', '.ui-page', function() {
+  $(document).on('swiperight', '.ui-page', function () {
     $('#settings-panel').panel('open');
   });
   $('a[href=#chat]').on('click', init_chat);
