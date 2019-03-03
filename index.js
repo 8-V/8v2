@@ -34,6 +34,7 @@ load_hw = function() {
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     $.mobile.loading('hide');
+    $.unblockUI();
   }).catch(function(e) {
     console.error(e);
   });
@@ -104,6 +105,7 @@ $(function() {
     textVisible: true,
     text: "Загрузка домашки..."
   });
+  $.blockUI();
   load_hw();
   $('[data-netlify-identity-button]').enhanceWithin();
   if ((navigator.serviceWorker != null) && false) {
