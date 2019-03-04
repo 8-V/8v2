@@ -2,7 +2,7 @@ var calc_food, clear_cache, init_chat, load_hw, role_change;
 
 getDate = function(d) {
   d = new Date(d)
-  return [d.getDate(), d.getMonth() + 1, d.getFullYear()].join('/')
+  return [d.getDate(), d.getMonth() + 1].join('/')
 }
 
 clear_cache = function () {
@@ -35,7 +35,7 @@ load_hw = function () {
     for (j = 0, len = res.length; j < len; j++) {
       predmet = res[j];
       appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
-      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}(Отправлено ${getDate(predmet['_changed'])})</h3>${predmet.body}`).appendTo($(appendTo));
+      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject} (Отправлено ${getDate(predmet['_changed'])})</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     $.unblockUI();
