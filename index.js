@@ -1,7 +1,7 @@
 var calc_food, clear_cache, init_chat, load_hw, role_change;
 
 getDate = function(d) {
-  d = Date.parse(d)
+  d = new Date(d)
   return [d.getDate(), d.getMonth() + 1].join('/')
 }
 
