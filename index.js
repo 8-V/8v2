@@ -23,7 +23,7 @@ clear_cache = function () {
 };
 
 load_hw = function () {
-  return fetch('https://homework-63c7.restdb.io/rest/hhww', {
+  return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
     method: 'GET',
     cache: 'no-cache',
     headers: {
@@ -32,6 +32,7 @@ load_hw = function () {
   }).then(function (res) {
     return res.json();
   }).then(function (res) {
+    res = res.filter(x=>x.from=='khorsun_dv@dlit.dp.ua')
     var appendTo, j, len, predmet;
     for (j = 0, len = res.length; j < len; j++) {
       predmet = res[j];
