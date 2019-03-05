@@ -36,7 +36,7 @@ load_hw = function () {
     for (j = 0, len = res.length; j < len; j++) {
       predmet = res[j];
       appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
-      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject} (Отправлено ${getDate(predmet['_changed'])})</h3>${predmet.body}`).appendTo($(appendTo));
+      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject})</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     $.unblockUI();
