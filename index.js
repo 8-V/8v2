@@ -23,7 +23,7 @@ clear_cache = function () {
 };
 
 load_hw = function () {
-  return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
+  return fetch('https://homework-63c7.restdb.io/rest/hhww', {
     method: 'GET',
     cache: 'no-cache',
     headers: {
