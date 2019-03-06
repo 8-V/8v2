@@ -30,7 +30,7 @@ load_hw = function () {
      res = res.filter(x=>!x.subject.match(/2$/)||x.from=='khorsun_dv@dlit.dp.ua')
     for (predmet of res) {
       appendTo = predmet.subject.match(/2$/) ? '#hw2' : predmet.subject.match(/1$/) ? '#hw1' : '#cool';
-      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject.slice(0, -2)}</h3>${predmet.body}`).appendTo($(appendTo));
+      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${append '#cool' ? predmet.subject : predmet.subject.slice(0, -2)}</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     $.unblockUI();
