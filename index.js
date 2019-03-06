@@ -32,11 +32,11 @@ load_hw = function () {
   }).then(function (res) {
     return res.json();
   }).then(function (res) {
-    res = res.filter(x=>x.from=='khorsun_dv@dlit.dp.ua')
     var appendTo, j, len, predmet;
     for (j = 0, len = res.length; j < len; j++) {
       predmet = res[j];
       appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
+      if(appendTo == '#hw2') res = rs.filter(x=>x.from=='khorsun_dv@dlit.dp.ua')
       $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject.slice(0, -2)}</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
