@@ -1,42 +1,35 @@
-var calc_food, clear_cache, init_chat, load_hw, role_change;
-
-getDate = function(d) {
+getDate = d => {
   console.log(d)
   d = new Date(d)
   return [d.getDate(), d.getMonth() + 1].join('/')
 }
 
-clear_cache = function () {
+clear_cache =  () => {
   if (navigator.serviceWorker == null) {
     console.error('Cant remove cache');
     return;
   }
   return navigator.serviceWorker.getRegistrations().then(function (x) {
-    var i, j, len;
-    for (j = 0, len = x.length; j < len; j++) {
-      i = x[j];
+    for (i of x) {
       i.unregister();
     }
   }).catch(function (e) {
-    return console.error(e);
+     console.error(e);
   });
 };
 
 load_hw = function () {
-  return fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
+   fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
     method: 'GET',
-    cache: 'no-cache',
     headers: {
       'x-apikey': '5c6ecf1828ca2e129e8696e8'
     }
   }).then(function (res) {
     return res.json();
   }).then(function (res) {
-    var appendTo, j, len, predmet;
-    for (j = 0, len = res.length; j < len; j++) {
-      predmet = res[j];
+     res = res.filter(x=>!x.subject.match(/2$/)||x.from=='khorsun_dv@dlit.dp.ua')
+    for (predmet of res) {
       appendTo = predmet.subject.match(/1$/) ? '#hw1' : '#hw2';
-      if(appendTo == '#hw2') res = res.filter(x=>x.from=='khorsun_dv@dlit.dp.ua')
       $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject.slice(0, -2)}</h3>${predmet.body}`).appendTo($(appendTo));
     }
     $('#hw1 #hw2').collapsibleset('refresh');
@@ -46,10 +39,9 @@ load_hw = function () {
   });
 };
 
-init_chat = function () { };
+init_chat = ()=>{};
 
-calc_food = function () {
-  var count, count_by, i, j, len, price, ref, result;
+calc_food =  () =>{
   result = $('#food-result');
   count_by = {
     '0': 0,
@@ -59,8 +51,7 @@ calc_food = function () {
   };
   count = 0;
   ref = $('#food-group').controlgroup().children().children();
-  for (j = 0, len = ref.length; j < len; j++) {
-    i = ref[j];
+  for (i of ref) {
     i = i.childNodes[1];
     if (!i.checked) {
       count_by[i.name]++;
