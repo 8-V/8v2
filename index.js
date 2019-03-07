@@ -26,13 +26,12 @@ load_hw = () => {
     }
   }).then(x => x.json()).then(predmets => {
     for (predmet of predmets) {
-      slice = predmet.from == 'khorsun_dv@dlit.dp.ua'
-      predmet.subject = slice ? predmet.subject.slice(0, -2) : predmet.subject
+      hw2 = predmet.from == 'khorsun_dv@dlit.dp.ua'
+      hw1 = predmet.from == 'anton.gimnasium@gmail.com'
       x = $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`)
-      if (!slice) x.appendTo($('#cool'))
-      else if (predmet.subject.match(/2$/)) x.appendTo($('#hw2'))
-      else x.appendTo($('#hw1'))
-
+      if (hw2) x.appendTo($('#hw2'))
+      else if (hw1) x.appendTo($('#hw1'))
+      else x.appendTo($('#cool'))
     }
     $('#hw1 #hw2').collapsibleset('refresh');
     $.unblockUI();
