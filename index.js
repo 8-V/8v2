@@ -4,44 +4,46 @@ getDate = d => {
   return [d.getDate(), d.getMonth() + 1].join('/')
 }
 
-clear_cache =  () => {
+clear_cache = () => {
   if (navigator.serviceWorker == null) {
     console.error('Cant remove cache');
     return;
   }
-  return navigator.serviceWorker.getRegistrations().then(function (x) {
+  return navigator.serviceWorker.getRegistrations().then(x => {
     for (i of x) {
       i.unregister();
     }
-  }).catch(function (e) {
-     console.error(e);
-  });
-};
-
-load_hw = function () {
-   fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
-    method: 'GET',
-    headers: {
-      'x-apikey': '5c6ecf1828ca2e129e8696e8'
-    }
-  }).then(function (res) {
-    return res.json();
-  }).then(function (res) {
-     res = res.filter(x=>!x.subject.match(/2$/)||x.from=='khorsun_dv@dlit.dp.ua')
-    for (predmet of res) {
-      appendTo = predmet.subject.match(/2$/) ? '#hw2' : (predmet.subject.match(/1$/) ? '#hw1' : '#cool');
-      $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${appendTo == '#cool' ? predmet.subject : predmet.subject.slice(0, -2)}</h3>${predmet.body}`).appendTo($(appendTo));
-    }
-    $('#hw1 #hw2').collapsibleset('refresh');
-    $.unblockUI();
-  }).catch(function (e) {
+  }).catch(e => {
     console.error(e);
   });
 };
 
-init_chat = ()=>{};
+load_hw = () => {
+  fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
+    method: 'GET',
+    headers: {
+      'x-apikey': '5c6ecf1828ca2e129e8696e8'
+    }
+  }).then(x => x.json()).then(predmets => {
+    for (predmet of predmets) {
+      slice = predmet.from == 'khorsun_dv@dlit.dp.ua'
+      predmet.subject = slice ? predmet.subject.slice(0, -2) : predmet.subject
+      x = $(`<div data-role="collapsible" data-filtertext="${predmet.subject}">`).html(`<h3>${predmet.subject}</h3>${predmet.body}`)
+      if (!slice) x.appendTo($('#cool'))
+      else if (predmet.subject.match(/2$/)) x.appendTo($('#hw2'))
+      else x.appendTo($('#hw1'))
 
-calc_food =  () =>{
+    }
+    $('#hw1 #hw2').collapsibleset('refresh');
+    $.unblockUI();
+  }).catch(e => {
+    console.error(e);
+  });
+};
+
+init_chat = () => { };
+
+calc_food = () => {
   result = $('#food-result');
   count_by = {
     '0': 0,
@@ -62,7 +64,7 @@ calc_food =  () =>{
   result.html(`<p>${count_by['0'] + count_by['5'] + count_by['30'] + count_by['35']} человек</p><p>${count_by['0']} бесплатников</p><p>${count_by['5']} по 5 грн</p><p>${count_by['30']} по 30 грн</p><p>${count_by['35']} по 35</p><p>Итого ${price} грн.</p>`);
 };
 
-role_change = function () {
+role_change = () => {
   var role, role_friendly_names, role_icons, role_urls, user_action_btn;
   user_action_btn = $('#user_action');
   user_action_btn.hide();
@@ -96,25 +98,25 @@ role_change = function () {
   }
 };
 
-$(function () {
+$(() => {
   var child, j, len, ref;
   $.blockUI({ message: 'Загрузка домашки...' });
   load_hw();
   $('[data-netlify-identity-button]').enhanceWithin();
   if ((navigator.serviceWorker != null) && false) {
-    navigator.serviceWorker.register('/sw.js').catch(function (e) {
+    navigator.serviceWorker.register('/sw.js').catch(e => {
       console.error(e);
     });
   }
   if (localStorage.role == null) {
     localStorage.role = 'role_default';
   }
-  $('input[type=radio][name=role]').change(function () {
+  $('input[type=radio][name=role]').change(() => {
     localStorage.role = $(this).attr('id');
     role_change();
   });
   $('#settings div a[data-icon=back]').on('click', user_action);
-  $(document).on('swiperight', '.ui-page', function () {
+  $(document).on('swiperight', '.ui-page', () => {
     $('#settings-panel').panel('open');
   });
   $('a[href=#chat]').on('click', init_chat);
