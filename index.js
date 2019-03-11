@@ -105,7 +105,7 @@ $(() => {
     localStorage.role = 'role_default';
   }
   $('input[type=radio][name=role]').change(() => {
-    localStorage.role = $('input[type=radio][name=role][selected]').attr('id') || 'role_default';
+    localStorage.role = $('input[type=radio][name=role]').toArray().filter(x=>x.checked)[0].id || 'role_default';
     role_change();
   });
   $('#settings div a[data-icon=back]').on('click', user_action);
