@@ -51,7 +51,7 @@ calc_food = () => {
     '35': 0
   };
   count = 0;
-  ref = $('#food-group').controlgroup().children().children();
+  ref = $('#food-group').children().children().toArray();
   for (i of ref) {
     i = i.childNodes[1];
     if (!i.checked) {
