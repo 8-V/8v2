@@ -101,11 +101,6 @@ $(() => {
   var child, j, len, ref;
   $.blockUI({ message: 'Загрузка домашки...' });
   load_hw();
-  if ((navigator.serviceWorker != null) && false) {
-    navigator.serviceWorker.register('/sw.js').catch(e => {
-      console.error(e);
-    });
-  }
   if (localStorage.role == null) {
     localStorage.role = 'role_default';
   }
