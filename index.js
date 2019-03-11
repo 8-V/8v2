@@ -94,7 +94,7 @@ role_change = () => {
       icon: role_icons[role]
     });
     user_action_btn.show();
-  }
+  } else user_action_btn.hide();
 };
 
 $(() => {
