@@ -101,7 +101,6 @@ $(() => {
   var child, j, len, ref;
   $.blockUI({ message: 'Загрузка домашки...' });
   load_hw();
-  $('[data-netlify-identity-button]').enhanceWithin();
   if ((navigator.serviceWorker != null) && false) {
     navigator.serviceWorker.register('/sw.js').catch(e => {
       console.error(e);
