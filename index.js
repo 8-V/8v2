@@ -25,6 +25,10 @@ load_hw = () => {
       'x-apikey': '5c6ecf1828ca2e129e8696e8'
     }
   }).then(x => x.json()).then(predmets => {
+    if('message' in predmets) {
+      $.unblockUI();
+      $.blockUI({message: "Внимание! Сервер заспамлен, сайт временно закрыт."})
+    }
     for (predmet of predmets) {
       hw2 = predmet.from == 'khorsun_dv@dlit.dp.ua'
       hw1 = predmet.from == 'anton.gimnasium@gmail.com'
