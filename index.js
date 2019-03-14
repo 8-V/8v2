@@ -1,8 +1,7 @@
+// @ts-nocheck
 var user_action = () => {}
 
-var getDate = /**
- * @param {string | number | Date} d
- */ d => {
+var getDate = d => {
   console.log(d)
   d = new Date(d)
   return [d.getDate(), d.getMonth() + 1].join('/')
@@ -135,12 +134,7 @@ $(() => {
     localStorage.role =
       $('input[type=radio][name=role]')
         .toArray()
-        .filter(
-          /**
-           * @param {{ checked: any; }} x
-           */
-          x => x.checked
-        )[0].id || 'role_default'
+        .filter(x => x.checked)[0].id || 'role_default'
     role_change()
   })
   $('#settings div a[data-icon=back]').on('click', user_action)

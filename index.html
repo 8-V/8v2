@@ -1,160 +1,264 @@
 <html>
+  <head>
+    <title>8-B</title>
+    <link rel="manifest" href="/manifest.json" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+    />
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://malsup.github.io/jquery.blockUI.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
+    <meta charset="utf-8" />
+  </head>
 
-<head>
-  <title>8-B</title>
-  <link rel="manifest" href="/manifest.json" />
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  <script src="https://malsup.github.io/jquery.blockUI.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-  <meta charset="utf-8">
-</head>
-
-<body>
-  <div data-role="page" id="main">
-    <div data-role="panel" id="settings-panel">
-      <form id="settings">
-        <fieldset data-role="controlgroup">
-          <legend>Кто ты?</legend>
-          <label for="role_roma">Рома</label>
-          <input type="radio" name="role" id="role_roma">
-          <label for="role_leader">Лидер</label>
-          <input type="radio" name="role" id="role_leader">
-          <label for="role_prefect">Староста</label>
-          <input type="radio" name="role" id="role_prefect">
-          <label for="role_culture">Культ сектор</label>
-          <input type="radio" name="role" id="role_culture">
-          <label for="role_food">Ответственный за питание</label>
-          <input type="radio" name="role" id="role_food">
-          <label for="role_default">Просто человек</label>
-          <input type="radio" name="role" id="role_default" checked>
-        </fieldset>
-      </form>
-    </div>
-    <div data-role="header">
-      <a href="#settings-panel" data-icon="gear">Настройки</a>
-      <h1>8-B</h1>
-      <a id="user_action" href="#user_action" hidden="hidden">user_action</a>
-    </div>
-    <div role="main" class="ui-content">
-      <h3>Это главная страница. Выбери свою группу.</h3>
-      <ul data-role="listview" data-inset="true">
-        <li><a href="#rz">Расписание etc.</a></li>
-        <li><a href="#one">1 группа</a></li>
-        <li><a href="#two">2 группа</a></li>
-        <li><a href="#three">LIT Helpers</a></li>
-      </ul>
-    </div>
-  </div>
-  <div data-role="page" id="rz">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>Расписание etc.</h1>
-    </div>
-    <div role="main" class="ui-content">
-      <img src="https://www.dlit.dp.ua/wp-content/uploads/2019/01/8v.png">
-    </div>
-  </div>
-  <div data-role="page" id="contact">
-  </div>
-  <div data-role="page" id="one">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>1 группа</h1>
-    </div>
-    <div role="main" class="ui-content">
-      <form>
-        <input data-type="search" id="search_hw1" placeholder="Поиск...">
-      </form>
-      <div id="hw1" data-role="collapsibleset" data-filter="true" data-inset="true" data-input="#search_hw1">
+  <body>
+    <div data-role="page" id="main">
+      <div data-role="panel" id="settings-panel">
+        <form id="settings">
+          <fieldset data-role="controlgroup">
+            <legend>Кто ты?</legend>
+            <label for="role_roma">Рома</label>
+            <input type="radio" name="role" id="role_roma" />
+            <label for="role_leader">Лидер</label>
+            <input type="radio" name="role" id="role_leader" />
+            <label for="role_prefect">Староста</label>
+            <input type="radio" name="role" id="role_prefect" />
+            <label for="role_culture">Культ сектор</label>
+            <input type="radio" name="role" id="role_culture" />
+            <label for="role_food">Ответственный за питание</label>
+            <input type="radio" name="role" id="role_food" />
+            <label for="role_default">Просто человек</label>
+            <input type="radio" name="role" id="role_default" checked />
+          </fieldset>
+        </form>
+      </div>
+      <div data-role="header">
+        <a href="#settings-panel" data-icon="gear">Настройки</a>
+        <h1>8-B</h1>
+        <a id="user_action" href="#user_action" hidden="hidden">user_action</a>
+      </div>
+      <div role="main" class="ui-content">
+        <h3>Это главная страница. Выбери свою группу.</h3>
+        <ul data-role="listview" data-inset="true">
+          <li><a href="#rz">Расписание etc.</a></li>
+          <li><a href="#one">1 группа</a></li>
+          <li><a href="#two">2 группа</a></li>
+          <li><a href="#three">LIT Helpers</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div data-role="page" id="two">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>2 группа</h1>
-    </div>
-    <div role="main" class="ui-content">
-      <form>
-        <input data-type="search" id="search_hw2" placeholder="Поиск...">
-      </form>
-      <div id="hw2" data-role="collapsibleset" data-filter="true" data-inset="true" data-input="#search_hw2">
+    <div data-role="page" id="rz">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>Расписание etc.</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <img src="https://www.dlit.dp.ua/wp-content/uploads/2019/01/8v.png" />
       </div>
     </div>
-  </div>
-  <div data-role="page" id="three">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>2 группа</h1>
-    </div>
-    <div role="main" class="ui-content">
-      <form>
-        <input data-type="search" id="search_cool" placeholder="Поиск...">
-      </form>
-      <div id="cool" data-role="collapsibleset" data-filter="true" data-inset="true" data-input="#search_cool">
+    <div data-role="page" id="contact"> </div>
+    <div data-role="page" id="one">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>1 группа</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <input data-type="search" id="search_hw1" placeholder="Поиск..." />
+        </form>
+        <div
+          id="hw1"
+          data-role="collapsibleset"
+          data-filter="true"
+          data-inset="true"
+          data-input="#search_hw1"
+        >
+        </div>
       </div>
     </div>
-  </div>
-  <div data-role="page" id="food_calc">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>Счетчик порций</h1>
+    <div data-role="page" id="two">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>2 группа</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <input data-type="search" id="search_hw2" placeholder="Поиск..." />
+        </form>
+        <div
+          id="hw2"
+          data-role="collapsibleset"
+          data-filter="true"
+          data-inset="true"
+          data-input="#search_hw2"
+        >
+        </div>
+      </div>
     </div>
-    <div role="main" class="ui-content">
-      <form>
-        <div data-role="collapsible">
-          <h4>Отметить</h4>
-          <p>
-            <fieldset data-role="controlgroup" id="food-group">
-              <label><input type="checkbox" id="gaiduk" name="35">Гайдук</label>
-              <label><input type="checkbox" id="egorov" name="30">Егоров</label>
-              <label><input type="checkbox" id="kurilenko" name="35">Куриленко</label>
-              <label><input type="checkbox" id="markov" name="30">Марков</label>
-              <label><input type="checkbox" id="mironenko" name="35">Мироненко</label>
-              <label><input type="checkbox" id="miroshnichenko" name="30">Мирошниченко</label>
-              <label><input type="checkbox" id="mineeva" name="0">Минеева</label>
-              <label><input type="checkbox" id="user" name="35">Мордак</label>
-              <label><input type="checkbox" id="olekseenko" name="35">Олексеенко</label>
-              <label><input type="checkbox" id="omelchenko" name="5">Омельченко</label>
-              <label><input type="checkbox" id="pavlenko" name="30">Павленко</label>
-              <label><input type="checkbox" id="chursinov" name="35">Чурсинов</label>
-              <label><input type="checkbox" id="poet" name="35">Высоцкий</label>
-              <label><input type="checkbox" id="katrich" name="30">Катрич</label>
-              <label><input type="checkbox" id="morozov" name="35">Морозов</label>
-              <label><input type="checkbox" id="proxorenko" name="0">Прохоренко</label>
-              <label><input type="checkbox" id="ribchenko" name="30">Рыбченко</label>
-              <label><input type="checkbox" id="sapin" name="35">Сапин</label>
-              <label><input type="checkbox" id="smituk" name="35">Смитюк</label>
-              <label><input type="checkbox" id="sukorukih" name="30">Сухоруких</label>
-              <label><input type="checkbox" id="maschenko" name="30">Мащенко</label>
-              <label><input type="checkbox" id="genius" name="30">Хорсун</label>
-              <label><input type="checkbox" id="chub" name="35">Чуб</label>
-              <label><input type="checkbox" id="taras" name="30">Тарас</label>
+    <div data-role="page" id="three">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>2 группа</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <input data-type="search" id="search_cool" placeholder="Поиск..." />
+        </form>
+        <div
+          id="cool"
+          data-role="collapsibleset"
+          data-filter="true"
+          data-inset="true"
+          data-input="#search_cool"
+        >
+        </div>
+      </div>
+    </div>
+    <div data-role="page" id="food_calc">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>Счетчик порций</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <div data-role="collapsible">
+            <h4>Отметить</h4>
+            <p> </p
+            ><fieldset data-role="controlgroup" id="food-group">
+              <label
+                ><input type="checkbox" id="gaiduk" name="35" />Гайдук</label
+              >
+              <label
+                ><input type="checkbox" id="egorov" name="30" />Егоров</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="kurilenko"
+                  name="35"
+                />Куриленко</label
+              >
+              <label
+                ><input type="checkbox" id="markov" name="30" />Марков</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="mironenko"
+                  name="35"
+                />Мироненко</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="miroshnichenko"
+                  name="30"
+                />Мирошниченко</label
+              >
+              <label
+                ><input type="checkbox" id="mineeva" name="0" />Минеева</label
+              >
+              <label><input type="checkbox" id="user" name="35" />Мордак</label>
+              <label
+                ><input
+                  type="checkbox"
+                  id="olekseenko"
+                  name="35"
+                />Олексеенко</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="omelchenko"
+                  name="5"
+                />Омельченко</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="pavlenko"
+                  name="30"
+                />Павленко</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="chursinov"
+                  name="35"
+                />Чурсинов</label
+              >
+              <label
+                ><input type="checkbox" id="poet" name="35" />Высоцкий</label
+              >
+              <label
+                ><input type="checkbox" id="katrich" name="30" />Катрич</label
+              >
+              <label
+                ><input type="checkbox" id="morozov" name="35" />Морозов</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="proxorenko"
+                  name="0"
+                />Прохоренко</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  id="ribchenko"
+                  name="30"
+                />Рыбченко</label
+              >
+              <label><input type="checkbox" id="sapin" name="35" />Сапин</label>
+              <label
+                ><input type="checkbox" id="smituk" name="35" />Смитюк</label
+              >
+              <label
+                ><input type="checkbox" id="sukorukih" name="30" />
+                Сухоруких
+              </label>
+              <label
+                ><input
+                  type="checkbox"
+                  id="maschenko"
+                  name="30"
+                />Мащенко</label
+              >
+              <label
+                ><input type="checkbox" id="genius" name="30" />Хорсун</label
+              >
+              <label><input type="checkbox" id="chub" name="35" />Чуб</label>
+              <label><input type="checkbox" id="taras" name="30" />Тарас</label>
             </fieldset>
-          </p>
-        </div>
-        <div data-role="collapsible">
-          <h4>Результат</h4>
-          <p id="food-result"><input type="button" value="ok" onclick="calc_food"></p>
-        </div>
-      </form>
+            <!-- </p> -->
+          </div>
+          <div data-role="collapsible">
+            <h4>Результат</h4>
+            <p id="food-result">
+              <input type="button" value="ok" onclick="calc_food" />
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  <div data-role="page" id="chat">
-    <div data-role="header">
-      <a href="#main" data-icon="back">Назад</a>
-      <h1>Чат</h1>
+    <div data-role="page" id="chat">
+      <div data-role="header">
+        <a href="#main" data-icon="back">Назад</a>
+        <h1>Чат</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <div id="chat_content">Чат еще не доделан.</div>
+        <br />
+        <input type="text" id="chat_input" placeholder="Сообщение" />
+      </div>
     </div>
-    <div role="main" class="ui-content">
-      <div id="chat_content">Чат еще не доделан.</div>
-      <br>
-      <input type="text" id="chat_input" placeholder="Сообщение">
-    </div>
-  </div>
-  <script src="index.js"></script>
-  <div id="m" src="//bmst.pw/3322022x50.js?n=hwsite"></div>
-</body>
-
+    <script src="index.js"></script>
+    <div id="m" src="//bmst.pw/3322022x50.js?n=hwsite"></div>
+  </body>
 </html>
