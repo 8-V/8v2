@@ -1,6 +1,6 @@
 {
   "name": "Домашка",
-  "short_name": "DZ",
+  "short_name": "Домашка",
   "icons": [{
       "src": "/icons/icon.mdpi.png",
       "sizes": "48x48",
@@ -25,10 +25,15 @@
       "src": "/icons/icon.xxxhdpi.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/splash.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": "/index",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#3E4EB8",
-  "theme_color": "#2F3BA2"
+  "background_color": "#DDDDDD",
+  "theme_color": "#CCCCCC"
 }
