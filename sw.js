@@ -1,42 +1,68 @@
-var cacheName = '4'
-var filesToCache = ['/', '/index', '/index.html', '/index.js', '/favicon.ico']
+const cacheName = 'asd'
+const toCache = [
+  '/'
+]
+const toBackup = [
+  'https://homework-63c7.restdb.io/rest/email_inbound'
+]
 
-self.addEventListener('install', e => {
-  console.log('[ServiceWorker] Install')
-  e.waitUntil(
-    caches.open(cacheName).then(cache => {
-      console.log('[ServiceWorker] Caching app shell')
-      return cache.addAll(filesToCache)
+// self.addEventListener('install', evt => {
+//   console.log('[sw] install')
+//   evt.waitUntil(
+//     caches.open(cacheName)
+//     .then(cache => cache.addAll(toCache))
+//   )
+// })
+
+self.addEventListener('install', evt => evt.waitUntil(self.skipWaiting()))
+
+self.addEventListener('activate', evt => {
+  console.log('[sw] activate')
+  evt.waitUntil(
+    caches.keys().then(keys => {
+      Promise.all(
+        keys
+        .filter(key => cacheName != key)
+        .map(key => {
+          console.log('[sw] delete', key)
+          caches.delete(key)
+        })
+      )
     })
   )
 })
-self.addEventListener('activate', e => {
-  console.log('[ServiceWorker] Activate')
-  e.waitUntil(
-    caches
-      .keys()
-      .then(keyList => {
-        return Promise.all(
-          keyList.map(key => {
-            if (key !== cacheName) {
-              console.log('[ServiceWorker] Removing old cache', key)
-              return caches.delete(key)
+
+self.addEventListener('fetch', evt => {
+  if (evt.request.url in toBackup)
+    evt.respondWith(
+      fetch(evt.request)
+      // .then(
+      //   resp => {
+      //     caches.open(cacheName)
+      //       .then(
+      //         cache =>
+      //         cache.put(evt.request, resp.clone())
+      //       )
+      //     // return resp
+      //   }
+      // )
+    )
+  else
+    evt.respondWith(
+      caches
+      .match(evt.request)
+      .then(
+        resp => {
+          return resp || fetch(evt.request).then(
+            res => {
+              caches.open(cacheName).then(
+                cache =>
+                cache.put(evt.request, res.clone())
+              )
+              // return res
             }
-          })
-        )
-      })
-      .catch(e => {
-        console.error(e)
-      })
-  )
-  return self.clients.claim()
-})
-
-self.addEventListener('fetch', e => {
-  console.log('[ServiceWorker] Fetch', e.request.url)
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request)
-    })
-  )
+          )
+        }
+      )
+    )
 })
