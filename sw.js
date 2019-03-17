@@ -1,6 +1,8 @@
 const cacheName = 'asd'
 const toCache = [
-  '/'
+  '/',
+  '/index.js',
+  '/favicon.ico'
 ]
 const toBackup = [
   'https://homework-63c7.restdb.io/rest/email_inbound'
@@ -14,7 +16,10 @@ const toBackup = [
 //   )
 // })
 
-self.addEventListener('install', evt => evt.waitUntil(self.skipWaiting()))
+self.addEventListener('install', evt => {
+  caches.open(cacheName).then(cache => cache.addAll(toCache))
+  evt.waitUntil(self.skipWaiting())
+})
 
 self.addEventListener('activate', evt => {
   console.log('[sw] activate')
@@ -36,16 +41,18 @@ self.addEventListener('fetch', evt => {
   if (evt.request.url in toBackup)
     evt.respondWith(
       fetch(evt.request)
-      // .then(
-      //   resp => {
-      //     caches.open(cacheName)
-      //       .then(
-      //         cache =>
-      //         cache.put(evt.request, resp.clone())
-      //       )
-      //     // return resp
-      //   }
-      // )
+      .then(
+        resp => {
+          caches.open(cacheName)
+            .then(
+              cache => {
+                cache.put(evt.request, resp.clone())
+                return resp
+              }
+            )
+
+        }
+      )
     )
   else
     evt.respondWith(
@@ -55,11 +62,12 @@ self.addEventListener('fetch', evt => {
         resp => {
           return resp || fetch(evt.request).then(
             res => {
-              caches.open(cacheName).then(
-                cache =>
-                cache.put(evt.request, res.clone())
+              return caches.open(cacheName).then(
+                cache => {
+                  cache.put(evt.request, res.clone())
+                  return res
+                }
               )
-              // return res
             }
           )
         }
