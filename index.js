@@ -1,3 +1,7 @@
+var load_img = img => {
+
+}
+
 var user_action = () => {}
 
 var parse_hw = predmets => {
