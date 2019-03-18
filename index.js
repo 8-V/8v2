@@ -7,7 +7,7 @@ var user_action = () => {}
 var parse_hw = predmets => {
   for (var predmet of predmets) {
     var hw2 = predmet.from == 'khorsun_dv@dlit.dp.ua'
-    var hw1 = predmet.from == 'anton.gimnasium@gmail.com'
+    var hw1 = predmet.from == 'jupavlenko005@gmail.com'
     var x = $(
       `<div data-role="collapsible" data-filtertext="${predmet.subject}">`
     ).html(`<h3>${predmet.subject}</h3>${predmet.body}`)
