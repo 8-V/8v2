@@ -116,6 +116,7 @@ var role_change = () => {
 }
 
 $(() => {
+  $.mobile.changePage('#main')
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js')
   $.blockUI({
     message: 'Загрузка домашки...'
