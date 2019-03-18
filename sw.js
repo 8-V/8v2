@@ -1,4 +1,4 @@
-const cacheName = 'meme'
+const cacheName = 'justACache'
 const toCache = [
   '/',
   '/index.js',
