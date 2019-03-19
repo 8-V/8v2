@@ -1,4 +1,4 @@
-const cacheName = 'justacache'
+const cacheName = 'supercache'
 const toCache = [
   '/',
   '/index.js',
@@ -38,7 +38,8 @@ self.addEventListener('activate', evt => {
 })
 
 self.addEventListener('fetch', evt => {
-  if (evt.request.url in toBackup) {
+  console.log('[sw] fetch', evt.request.url)
+  if (toBackup.includes(evt.request.url)) {
     console.log('[sw] Backing up', evt.request.url)
     evt.respondWith(
       fetch(evt.request)
