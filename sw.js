@@ -38,7 +38,8 @@ self.addEventListener('activate', evt => {
 })
 
 self.addEventListener('fetch', evt => {
-  if (evt.request.url in toBackup)
+  if (evt.request.url in toBackup) {
+    console.log('[sw] Backing up', evt.request.url)
     evt.respondWith(
       fetch(evt.request)
       .then(
@@ -54,7 +55,7 @@ self.addEventListener('fetch', evt => {
         }
       )
     )
-  else
+  } else
     evt.respondWith(
       caches
       .match(evt.request)
