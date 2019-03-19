@@ -1,4 +1,4 @@
-const cacheName = 'nocache'
+const cacheName = 'justacache'
 const toCache = [
   '/',
   '/index.js',
