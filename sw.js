@@ -1,4 +1,4 @@
-const cacheName = 'supercache'
+const cacheName = 'v1'
 const toCache = [
   '/',
   '/index.js',
@@ -7,14 +7,6 @@ const toCache = [
 const toBackup = [
   'https://homework-63c7.restdb.io/rest/email_inbound'
 ]
-
-// self.addEventListener('install', evt => {
-//   console.log('[sw] install')
-//   evt.waitUntil(
-//     caches.open(cacheName)
-//     .then(cache => cache.addAll(toCache))
-//   )
-// })
 
 self.addEventListener('install', evt => {
   caches.open(cacheName).then(cache => cache.addAll(toCache))
