@@ -44,15 +44,10 @@ self.addEventListener('fetch', evt => {
     evt.respondWith(
       fetch(evt.request)
       .then(
-        resp => {
-          caches.open(cacheName)
-            .then(
-              cache => {
-                cache.put(evt.request, resp.clone())
-                return resp
-              }
-            )
-
+        async resp => {
+          cache = await caches.open(cacheName)
+          cache.put(evt.request, resp.clone())
+          return resp
         }
       )
     )
