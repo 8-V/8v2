@@ -43,11 +43,9 @@ self.addEventListener('fetch', evt => {
         }
       )
     )
-  } else
+  } else {
     evt.respondWith(
-      caches
-      .match(evt.request)
-      .then(
+      caches.match(evt.request).then(
         resp => {
           return resp || fetch(evt.request).then(
             async res => {
@@ -59,4 +57,5 @@ self.addEventListener('fetch', evt => {
         }
       )
     )
+  }
 })
