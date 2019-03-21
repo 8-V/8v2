@@ -42,6 +42,7 @@ self.addEventListener('fetch', evt => {
           return resp
         }
       )
+      .catch(_ => caches.match(evt.request))
     )
   } else {
     evt.respondWith(
