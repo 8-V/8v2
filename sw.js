@@ -1,4 +1,4 @@
-const cacheName = 'v0'
+const cacheName = 'v0m'
 const toCache = [
   '/',
   '/index.js',
