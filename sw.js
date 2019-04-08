@@ -1,6 +1,9 @@
-const cacheName = 'v1.0.2';
+const cacheName = 'v1.0.3';
 const toCache = ['/', '/index.js', '/favicon.ico'];
-const toBackup = ['https://homework-63c7.restdb.io/rest/email_inbound'];
+const toBackup = [
+  'https://homework-63c7.restdb.io/rest/email_inbound',
+  'https://homework-63c7.restdb.io/rest/hw'
+];
 
 self.addEventListener('install', evt => {
   caches.open(cacheName).then(cache => cache.addAll(toCache));
