@@ -1,0 +1,20 @@
+{
+  "source": ".",
+  "destination": "dist",
+  "plugins": {
+    "metalsmith-ignore": ["node_modules/**/*", ".git/**/*"],
+    "metalsmith-uglify": { "es": true, "concat": true },
+    "metalsmith-purifycss": {
+      "content": ["*.html", "*.js"],
+      "css": ["*.css"],
+      "output": "app.css"
+    }
+  },
+  "metadata": {
+    "sitename": "IgroNews",
+    "siteurl": "https://igronews.tk",
+    "description": "The best game mag",
+    "generatorname": "Metalsmith",
+    "generatorurl": "http://metalsmith.io/"
+  }
+}
