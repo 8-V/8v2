@@ -1,4 +1,4 @@
-const cacheName = 'v1.0.4';
+const cacheName = 'v1.1.1';
 const toCache = ['/', '/index.js', '/favicon.ico'];
 const toBackup = [
   'https://homework-63c7.restdb.io/rest/email_inbound',
