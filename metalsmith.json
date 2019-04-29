@@ -2,13 +2,13 @@
   "source": ".",
   "destination": "dist",
   "plugins": {
-    "metalsmith-ignore": ["node_modules/**/*", ".git/**/*"],
     "metalsmith-uglify": { "es": true, "concat": true },
     "metalsmith-purifycss": {
       "content": ["*.html", "*.js"],
       "css": ["*.css"],
       "output": "app.css"
-    }
+    },
+    "metalsmith-html-minify": null
   },
   "metadata": {
     "sitename": "IgroNews",
