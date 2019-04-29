@@ -8,7 +8,7 @@
       "css": ["*.css"],
       "output": "app.css"
     },
-    "metalsmith-html-minify": null
+    "metalsmith-html-minifier": null
   },
   "metadata": {
     "sitename": "IgroNews",

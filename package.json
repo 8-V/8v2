@@ -10,5 +10,8 @@
   "repository": "https://github.com/tekirinka/8v2",
   "author": "megdimka <megdimka@vivaldi.net>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "metalsmith-html-minifier": "^3.0.3"
+  }
 }
