@@ -10,7 +10,7 @@
 # been specified, include it in the publish directory path.
 publish = "dist/"
 # Default build command.
-command = "npx metalsmith"
+command = "yarn build"
 # Directory with the lambda functions to deploy to AWS.
 # functions = "src/functions/"
 
@@ -18,7 +18,7 @@ command = "npx metalsmith"
 # deploy contexts will inherit these settings.
 [context.production]
 publish = "dist/"
-command = "npx metalsmith"
+command = "yarn build"
 
 # environment = { ACCESS_TOKEN = "super secret", NODE_VERSION = "8.0.1" }
 # Deploy Preview context: all deploys resulting from a pull/merge request will
@@ -32,7 +32,7 @@ publish = "dist/"
 # Branch Deploy context: all deploys that are not from a pull/merge request or
 # from the Production branch will inherit these settings.
 # [context.branch-deploy]
-# command = "npx metalsmith"
+# command = "yarn build"
 # [context.branch-deploy.environment]
 # NODE_ENV = "development"
 # Specific branch context: all deploys from this specific branch will inherit

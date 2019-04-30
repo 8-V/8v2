@@ -1,17 +1,14 @@
 {
-  "devDependencies": {
-    "metalsmith-ignore": "^1.0.0",
-    "metalsmith-purifycss": "^0.3.0",
-    "metalsmith-uglify": "^2.3.2"
-  },
   "name": "8v2",
-  "version": "1.0.0",
-  "main": ".",
+  "version": "2.0.0",
   "repository": "https://github.com/tekirinka/8v2",
   "author": "megdimka <megdimka@vivaldi.net>",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "metalsmith-html-minifier": "^3.0.3"
+  "scripts": {
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
   }
 }
