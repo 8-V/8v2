@@ -79,15 +79,12 @@ var calc_food = () => {
     "35": 0,
   };
   var group = document.querySelectorAll("#food-group input");
-  // console.dir(group)
   group.forEach(chbox => {
-    // console.log(chbox)
     if ("undefined" != typeof chbox && chbox.checked);
     else {
       count_by[chbox.name]++;
     }
   });
-  // console.log(count_by)
   var price = count_by["5"] * 5 + count_by["30"] * 30 + count_by["35"] * 35;
   result.html(
     `<p>${count_by["0"] +
@@ -127,7 +124,6 @@ var role_change = () => {
 };
 
 $(() => {
-  //  $.mobile.changePage('#main');
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
   $.blockUI({
     message: "Загрузка домашки...",
@@ -160,7 +156,6 @@ $(() => {
   calc_food();
   $("#theme").on("click", _ => {
     $(".ui-mobile-viewport").toggleClass("ui-overlay-b");
-    //  $("[data-role=page]").toggleClass("ui-body-b");
     $("[data-role=page]").toggleClass("ui-page-theme-b");
     $("[data-role=header], [data-role=listview] > li").toggleClass("ui-bar-b");
     $("ui-btn").toggleClass("ui-btn-b");

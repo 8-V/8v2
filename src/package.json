@@ -1,0 +1,26 @@
+{
+  "name": "8v2",
+  "version": "2.0.0",
+  "repository": "https://github.com/tekirinka/8v2",
+  "author": "megdimka <megdimka@vivaldi.net>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "parcel build src/index.html",
+    "dev": "parcel src/index.html",
+    "lint": "prettier --check **{/*,} !**{/*,}.{ico,webp,toml} !{dist,yarn}**{/*,} !{LICENSE,_redirects}",
+    "lint:fix": "prettier --write **{/*,} !**{/*,}.{ico,webp,toml} !{dist,yarn}**{/*,} !{LICENSE,_redirects}"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-change-file": "^1.3.0",
+    "prettier": "^1.17.0"
+  },
+  "parcel-plugin-change-file": {
+    "copy": [
+      "static"
+    ]
+  }
+}
