@@ -1,8 +1,0 @@
-#!/bin/bash
-echo ${@:1}
-for i in ${@:1}
-do
-	touch dist/$i
-	http -f post https://closure-compiler.appspot.com/compile "js_code=@src/$i" compilation_level=ADVANCED_OPTIMIZATIONS output_format=text output_info=compiled_code > dist/$i
-	echo "processing $i done"
-done
