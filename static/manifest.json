@@ -1,7 +1,8 @@
 {
   "name": "Домашка",
   "short_name": "Домашка",
-  "icons": [{
+  "icons": [
+    {
       "src": "/icons/icon.mdpi.png",
       "sizes": "48x48",
       "type": "image/png"
