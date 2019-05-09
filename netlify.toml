@@ -1,4 +1,2 @@
-[Settings]
-[build]
-publish = "dist/"
-command = "yarn build"
+[build];
+publish = '.';
