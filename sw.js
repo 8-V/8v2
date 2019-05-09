@@ -1,8 +1,8 @@
-const cacheName = 'v1.0.4';
+const cacheName = 'v1.0.5';
 const toCache = ['/', '/index.js', '/favicon.ico'];
 const toBackup = [
   'https://homework-63c7.restdb.io/rest/email_inbound',
-  'https://homework-63c7.restdb.io/rest/hw'
+  'https://homework-63c7.restdb.io/rest/hw',
 ];
 
 self.addEventListener('install', evt => {
@@ -20,9 +20,9 @@ self.addEventListener('activate', evt => {
           .map(key => {
             console.log('[sw] delete', key);
             caches.delete(key);
-          })
+          }),
       );
-    })
+    }),
   );
 });
 
@@ -37,7 +37,7 @@ self.addEventListener('fetch', evt => {
           cache.put(evt.request, resp.clone());
           return resp;
         })
-        .catch(_ => caches.match(evt.request))
+        .catch(_ => caches.match(evt.request)),
     );
   } else {
     evt.respondWith(
@@ -50,7 +50,7 @@ self.addEventListener('fetch', evt => {
             return res;
           })
         );
-      })
+      }),
     );
   }
 });
