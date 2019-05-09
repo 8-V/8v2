@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="/app.css" />
 
+    <link rel="stylesheet" href="/jq/jquery.mobile-1.4.5.min.css" />
+
     <link
       rel="preconnect"
       href="https://homework-63c7.restdb.io/rest/email_inbound"
@@ -28,15 +30,15 @@
         <form id="settings">
           <fieldset data-role="controlgroup">
             <legend>Доп. функции:</legend>
-            <label for="food">Счетчик порций</label>
-            <input type="checkbox" name="role" id="food" />
+            <label for="theme">Темная тема</label>
+            <input id="theme" type="checkbox" name="role" />
           </fieldset>
         </form>
       </div>
       <div data-role="header">
         <a href="#settings-panel" data-icon="gear">Настройки</a>
         <h1>8-B</h1>
-        <a id="user_action" href="#user_action" hidden="hidden">user_action</a>
+        <a href="#food" data-icon="user">Счетчик порций</a>
       </div>
       <div role="main" class="ui-content">
         <h3>Это главная страница. Выбери свою группу.</h3>
@@ -44,7 +46,6 @@
           <li><a href="#rz" data-transition="slide">Расписание etc.</a></li>
           <li><a href="#one" data-transition="slide">1 группа</a></li>
           <li><a href="#two" data-transition="slide">2 группа</a></li>
-          <li><a href="#three" data-transition="slide">LIT Helpers</a></li>
         </ul>
       </div>
     </div>
@@ -54,7 +55,6 @@
         <h1>Расписание etc.</h1>
       </div>
       <div role="main" class="ui-content">
-        <!-- <img src="/8v-blur.webp" data-src="/8v.webp" class="lazyload" /> -->
         <img alt="Расписание" src="/8v.webp" class="lazyload" />
       </div>
     </div>
@@ -92,24 +92,6 @@
           data-filter="true"
           data-inset="true"
           data-input="#search_hw2"
-        ></div>
-      </div>
-    </div>
-    <div data-role="page" id="three">
-      <div data-role="header">
-        <a href="#main" data-icon="back">Назад</a>
-        <h1>2 группа</h1>
-      </div>
-      <div role="main" class="ui-content">
-        <form>
-          <label><input data-type="search" id="search_cool" />Поиск...</label>
-        </form>
-        <div
-          id="cool"
-          data-role="collapsibleset"
-          data-filter="true"
-          data-inset="true"
-          data-input="#search_cool"
         ></div>
       </div>
     </div>
@@ -250,6 +232,6 @@
     <script src="/jq/jquery.min.js"></script>
     <script src="/jq/jquery.mobile-1.4.5.min.js"></script>
     <script src="/jq/jquery.blockUI.js"></script>
-    <script defer src="/bundle.js"></script>
+    <script defer src="/index.js"></script>
   </body>
 </html>
