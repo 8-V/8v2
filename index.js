@@ -15,6 +15,9 @@ let parse_hw = (hw1, hw2) => {
 };
 
 let load_hw = async () => {
+  $.blockUI({
+    message: 'Загрузка домашки...',
+  });
   let hw1 = await fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
     method: 'GET',
     headers: {
@@ -67,13 +70,31 @@ let calc_food = () => {
     } по 35</p><p>Итого ${price} грн.</p>`,
   );
 };
+const setTheme = _ => {
+  localStorage.theme = $('#theme:checked').length ? 'a' : 'b';
+  getTheme();
+};
+const getTheme = _ => {
+  const theme = localStorage.theme;
+  const torem = theme == 'a' ? 'b' : 'a';
+  $('.ui-mobile-viewport').removeClass('ui-overlay-' + localStorage.theme);
+  $('[data-role=page]').removeClass('ui-page-theme-' + localStorage.theme);
+  $('[data-role=header], [data-role=listview] > li').removeClass(
+    'ui-bar-' + localStorage.theme,
+  );
+  $('ui-btn').removeClass('ui-btn-' + localStorage.theme);
+
+  $('.ui-mobile-viewport').addClass('ui-overlay-' + localStorage.theme);
+  $('[data-role=page]').addClass('ui-page-theme-' + localStorage.theme);
+  $('[data-role=header], [data-role=listview] > li').addClass(
+    'ui-bar-' + localStorage.theme,
+  );
+  $('ui-btn').addClass('ui-btn-' + localStorage.theme);
+};
 
 $(() => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
-  $.blockUI({
-    message: 'Загрузка домашки...',
-  });
-  load_hw();
+  //  load_hw();
   $(document).on('swiperight', '.ui-page', () => {
     if ($.mobile.activePage.attr('id') == 'main')
       $('#settings-panel').panel('open');
@@ -83,14 +104,14 @@ $(() => {
         reverse: true,
       });
   });
+  $(document).on('swipeleft', '.ui-page', _ => {
+    location.href = '/game';
+  });
   let group = $('#food-group')[0].form;
   for (let child of group) {
     $(child).on('change', calc_food);
   }
-  $('#theme').on('click', _ => {
-    $('.ui-mobile-viewport').toggleClass('ui-overlay-b');
-    $('[data-role=page]').toggleClass('ui-page-theme-b');
-    $('[data-role=header], [data-role=listview] > li').toggleClass('ui-bar-b');
-    $('ui-btn').toggleClass('ui-btn-b');
-  });
+  calc_food();
+  getTheme();
+  $('#theme').on('click', setTheme);
 });
