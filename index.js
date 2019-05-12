@@ -101,7 +101,7 @@ const getTheme = _ => {
     .classList.add('ui-btn-' + localStorage.theme);
 };
 
-$(() => {
+$(document).on('pagebeforeshow', () => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
   localStorage.theme = localStorage.theme || 'a';
   load_hw();
