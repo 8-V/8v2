@@ -51,12 +51,8 @@ let calc_food = () => {
     '30': 0,
     '35': 0,
   };
-  let group = document.querySelectorAll('#food-group input');
-  group.forEach(chbox => {
-    if ('undefined' != typeof chbox && chbox.checked);
-    else {
-      count_by[chbox.name]++;
-    }
+  document.querySelectorAll('#food-group input').forEach(chbox => {
+    if ('undefined' != typeof chbox && !chbox.checked) count_by[chbox.name]++;
   });
   let price = count_by['5'] * 5 + count_by['30'] * 30 + count_by['35'] * 35;
   result.html(
@@ -76,20 +72,33 @@ const setTheme = _ => {
 };
 const getTheme = _ => {
   const theme = localStorage.theme;
+  $('#theme')
+    .prop('checked', theme == 'b')
+    .checkboxradio('refresh');
   const torem = theme == 'a' ? 'b' : 'a';
-  $('.ui-mobile-viewport').removeClass('ui-overlay-' + torem);
-  $('[data-role=page]').removeClass('ui-page-theme-' + torem);
-  $('[data-role=header], [data-role=listview] > li').removeClass(
-    'ui-bar-' + torem,
-  );
-  $('ui-btn').removeClass('ui-btn-' + torem);
+  document
+    .querySelector('.ui-mobile-viewport')
+    .classList.remove('ui-overlay-' + torem);
+  document
+    .querySelector('[data-role=page]')
+    .classList.remove('ui-page-theme-' + torem);
+  document
+    .querySelector('[data-role=header], [data-role=listview] > li')
+    .classList.remove('ui-bar-' + torem);
+  document.querySelector('.ui-btn').classList.remove('ui-btn-' + torem);
 
-  $('.ui-mobile-viewport').addClass('ui-overlay-' + localStorage.theme);
-  $('[data-role=page]').addClass('ui-page-theme-' + localStorage.theme);
-  $('[data-role=header], [data-role=listview] > li').addClass(
-    'ui-bar-' + localStorage.theme,
-  );
-  $('ui-btn').addClass('ui-btn-' + localStorage.theme);
+  document
+    .querySelector('.ui-mobile-viewport')
+    .classList.add('ui-overlay-' + localStorage.theme);
+  document
+    .querySelector('[data-role=page]')
+    .classList.add('ui-page-theme-' + localStorage.theme);
+  document
+    .querySelector('[data-role=header], [data-role=listview] > li')
+    .classList.add('ui-bar-' + localStorage.theme);
+  document
+    .querySelector('.ui-btn')
+    .classList.add('ui-btn-' + localStorage.theme);
 };
 
 $(() => {
