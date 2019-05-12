@@ -91,7 +91,7 @@ const getTheme = _ => {
     .map(i => i.classList.add(`ui-bar-${theme}`));
 };
 
-$(document).on('pagebeforeshow', () => {
+$(document).one('pagebeforeshow', () => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
   localStorage.theme = localStorage.theme || 'a';
   load_hw();
@@ -112,6 +112,7 @@ $(document).on('pagebeforeshow', () => {
     $(child).on('change', calc_food);
   }
   calc_food();
-  getTheme();
   $('#theme').on('click', setTheme);
 });
+
+$(document).on('pagebeforeshow', getTheme);
