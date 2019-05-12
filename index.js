@@ -94,7 +94,7 @@ const getTheme = _ => {
 
 $(() => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
-  //  load_hw();
+  load_hw();
   $(document).on('swiperight', '.ui-page', () => {
     if ($.mobile.activePage.attr('id') == 'main')
       $('#settings-panel').panel('open');
