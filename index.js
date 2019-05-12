@@ -71,18 +71,18 @@ let calc_food = () => {
   );
 };
 const setTheme = _ => {
-  localStorage.theme = $('#theme:checked').length ? 'a' : 'b';
+  localStorage.theme = $('#theme:checked').length ? 'b' : 'a';
   getTheme();
 };
 const getTheme = _ => {
   const theme = localStorage.theme;
   const torem = theme == 'a' ? 'b' : 'a';
-  $('.ui-mobile-viewport').removeClass('ui-overlay-' + localStorage.theme);
-  $('[data-role=page]').removeClass('ui-page-theme-' + localStorage.theme);
+  $('.ui-mobile-viewport').removeClass('ui-overlay-' + torem);
+  $('[data-role=page]').removeClass('ui-page-theme-' + torem);
   $('[data-role=header], [data-role=listview] > li').removeClass(
-    'ui-bar-' + localStorage.theme,
+    'ui-bar-' + torem,
   );
-  $('ui-btn').removeClass('ui-btn-' + localStorage.theme);
+  $('ui-btn').removeClass('ui-btn-' + torem);
 
   $('.ui-mobile-viewport').addClass('ui-overlay-' + localStorage.theme);
   $('[data-role=page]').addClass('ui-page-theme-' + localStorage.theme);
@@ -94,6 +94,7 @@ const getTheme = _ => {
 
 $(() => {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+  localStorage.theme = localStorage.theme || 'a';
   load_hw();
   $(document).on('swiperight', '.ui-page', () => {
     if ($.mobile.activePage.attr('id') == 'main')
