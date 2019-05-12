@@ -76,29 +76,19 @@ const getTheme = _ => {
     .prop('checked', theme == 'b')
     .checkboxradio('refresh');
   const torem = theme == 'a' ? 'b' : 'a';
-  document
-    .querySelector('.ui-mobile-viewport')
-    .classList.remove('ui-overlay-' + torem);
-  document
-    .querySelector('[data-role=page]')
-    .classList.remove('ui-page-theme-' + torem);
-  document
-    .querySelector('[data-role=header], [data-role=listview] > li')
-    .classList.remove('ui-bar-' + torem);
-  document.querySelector('.ui-btn').classList.remove('ui-btn-' + torem);
+  [...document.querySelectorAll('.ui-mobile-viewport')]
+    .map(i => i.classList.remove(`ui-overlay-${torem}`));
+  [...document.querySelectorAll('[data-role=page]')]
+    .map(i => i.classList.remove(`ui-page-theme-${torem}`));
+  [...document.querySelectorAll('[data-role=header], [data-role=listview] > li')]
+    .map(i => i.classList.remove(`ui-bar-${torem}`));
 
-  document
-    .querySelector('.ui-mobile-viewport')
-    .classList.add('ui-overlay-' + localStorage.theme);
-  document
-    .querySelector('[data-role=page]')
-    .classList.add('ui-page-theme-' + localStorage.theme);
-  document
-    .querySelector('[data-role=header], [data-role=listview] > li')
-    .classList.add('ui-bar-' + localStorage.theme);
-  document
-    .querySelector('.ui-btn')
-    .classList.add('ui-btn-' + localStorage.theme);
+  [...document.querySelectorAll('.ui-mobile-viewport')]
+    .map(i => i.classList.add(`ui-overlay-${theme}`));
+  [...document.querySelectorAll('[data-role=page]')]
+    .map(i => i.classList.add(`ui-page-theme-${theme}`));
+  [...document.querySelectorAll('[data-role=header], [data-role=listview] > li')]
+    .map(i => i.classList.add(`ui-bar-${theme}`));
 };
 
 $(document).on('pagebeforeshow', () => {
