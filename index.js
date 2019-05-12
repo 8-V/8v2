@@ -122,6 +122,7 @@ $(document).one('pagebeforeshow', () => {
     $(child).on('change', calc_food);
   }
   calc_food();
-  getTheme();
   $('#theme').on('click', setTheme);
 });
+
+$(document).on('pagebeforeshow', getTheme);
