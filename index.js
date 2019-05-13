@@ -115,4 +115,4 @@ $(document).one('pagebeforeshow', () => {
   $('#theme').on('click', setTheme);
 });
 
-$(document).on('pagebeforeshow', getTheme);
+$(document).on('pageinit', getTheme);
