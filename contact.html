@@ -1,50 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"
-    />
-    <meta charset="utf-8" />
-    <meta name="Description" content="Домашка для 8-В класса." />
-    <meta name="theme-color" content="#EEEEEE" />
-
-    <title>8-B</title>
-
-    <link rel="manifest" href="/manifest.json" />
-
-    <link rel="stylesheet" href="/app.css" />
-
-    <link rel="stylesheet" href="/jq/jquery.mobile-1.4.5.min.css" />
-
-    <link
-      rel="preconnect"
-      href="https://homework-63c7.restdb.io/rest/email_inbound"
-    />
-    <link rel="preconnect" href="https://homework-63c7.restdb.io/rest/hw" />
-  </head>
-
-  <body>
-    <div data-role="page" data-close-btn="none" data-dialog="true" id="contact">
-      <div data-role="header">
-        <a href="/" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
-        <h1>Фидбэк</h1>
-      </div>
-      <div role="main" class="ui-content">
-        <form action="https://formspree.io/mdim@tuta.io" method="post">
-          <textarea
-            name="msg"
-            cols="30"
-            rows="10"
-            placeholder="Собсно фидбэк"
-          ></textarea>
-          <input type="hidden" name="_subject" value="Форма на сайте" />
-          <input value="OK" type="submit" />
-        </form>
-      </div>
-    </div>
-    <script src="/jq/jquery.min.js"></script>
-    <script src="/jq/jquery.mobile-1.4.5.min.js"></script>
-    <script src="/jq/jquery.blockUI.js"></script>
-  </body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"/>
+        <meta charset="utf-8"/>
+        <meta name="Description" content="Домашка для 8-В класса."/>
+        <meta name="theme-color" content="#EEEEEE"/>
+        <title>8-B</title>
+        <link rel="manifest" href="/manifest.json"/>
+        <link rel="stylesheet" href="/app.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css"/>
+        <script src="https://unpkg.com/jquery@2.1/dist/jquery.min.js"></script>
+        <script src="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.js"></script>
+        <script src="https://malsup.github.io/min/jquery.blockUI.min.js"></script>
+    </head>
+    <body>
+        <div data-role="page" data-close-btn="none" data-dialog="true" id="contact">
+            <div data-role="header">
+                <a href="/" data-transition="pop" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+                <h1>Фидбэк</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <form action="https://formspree.io/mdim@tuta.io" method="post">
+                    <textarea name="msg" cols="30" rows="10" placeholder="Собсно фидбэк"></textarea>
+                    <input type="hidden" name="_subject" value="Форма на сайте"/>
+                    <input value="OK" type="submit"/>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>
