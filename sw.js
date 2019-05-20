@@ -1,5 +1,5 @@
 importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/latest/workbox-sw.js',
+  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js',
 );
 
 workbox.precaching.precacheAndRoute(['/', '/index.js', '/app.css']);
