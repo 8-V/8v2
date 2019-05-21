@@ -1,4 +1,5 @@
 img {
-  max-width: 100% !important;
-  background: white !important;
+    max-width: 100% !important;
+    /* important because of jquery */
+    background: white !important;
 }

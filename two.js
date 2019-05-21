@@ -1,7 +1,4 @@
 let load_hw = async _=>{
-    $.blockUI({
-        message: 'Загрузка домашки...',
-    });
     let hw = await fetch('https://homework-63c7.restdb.io/rest/hw',{method:'GET',headers:{'x-apikey':'5c6ecf1828ca2e129e8696e8	',},}).then(x=>x.json());
 
     if ('message'in hw) {
@@ -13,7 +10,6 @@ let load_hw = async _=>{
     }
     parse_hw(hw);
     $('#hw2').collapsibleset('refresh');
-    $.unblockUI();
 }
 
 let parse_hw = hw=>{
