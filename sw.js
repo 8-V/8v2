@@ -32,7 +32,8 @@ workbox.routing.registerRoute(
 );
 
 self.addEventListener('push', evt => {
-  console.log('[sw] Push:', evt);
+  console.log('[sw] Push:');
+  console.dir(evt);
 
   let {title, body, icon, tag} = evt;
 
