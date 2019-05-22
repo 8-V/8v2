@@ -1,56 +1,64 @@
-const cacheName = 'v1.2.1';
-const toCache = ['/', '/index.js', '/favicon.ico'];
-const toBackup = [
-  'https://homework-63c7.restdb.io/rest/email_inbound',
-  'https://homework-63c7.restdb.io/rest/hw',
-];
+Notification.requestPermission().then(r => {
+  if (r === 'denied') return console.log('[notifications] denied');
+  if (r === 'default') return console.log('[notifications] skipped');
 
-self.addEventListener('install', evt => {
-  caches.open(cacheName).then(cache => cache.addAll(toCache));
-  evt.waitUntil(self.skipWaiting());
-});
+  self.addEventListener('push', evt => {
+    console.log('[sw] Push:', evt);
 
-self.addEventListener('activate', evt => {
-  console.log('[sw] activate');
-  evt.waitUntil(
-    caches.keys().then(keys => {
-      Promise.all(
-        keys
-          .filter(key => cacheName != key)
-          .map(key => {
-            console.log('[sw] delete', key);
-            caches.delete(key);
-          }),
-      );
-    }),
-  );
-});
+    let {title, body, icon, tag} = evt;
 
-self.addEventListener('fetch', evt => {
-  console.log('[sw] fetch', evt.request.url);
-  if (toBackup.includes(evt.request.url)) {
-    console.log('[sw] Backing up', evt.request.url);
-    evt.respondWith(
-      fetch(evt.request)
-        .then(async resp => {
-          cache = await caches.open(cacheName);
-          cache.put(evt.request, resp.clone());
-          return resp;
+    evt.waitUntil(self.registration.showNotification(title, {body, icon, tag}));
+  });
+
+  self.addEventListener('notificationclick', evt => {
+    console.log('[sw] Notification click:', evt.notification.tag);
+
+    evt.notification.close();
+
+    evt.waitUntil(
+      clients
+        .matchAll({
+          type: 'window',
         })
-        .catch(_ => caches.match(evt.request)),
+        .then(clist => {
+          let client = clist.filter(c => c.url === '/' && 'focus' in c)[0];
+
+          if (client) return client.focus();
+          else if (clients.openWindow) clients.openWindow('/');
+        }),
     );
-  } else {
-    evt.respondWith(
-      caches.match(evt.request).then(resp => {
-        return (
-          resp ||
-          fetch(evt.request).then(async res => {
-            cache = await caches.open(cacheName);
-            cache.put(evt.request, res.clone());
-            return res;
-          })
-        );
-      }),
-    );
-  }
+  });
 });
+
+importScripts(
+  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js',
+);
+
+workbox.precaching.precacheAndRoute(['/', '/index.js', '/app.css']);
+
+workbox.routing.registerRoute(
+  /(unpkg,gstatic)\.com/,
+  new workbox.strategies.CacheFirst({
+    cacheName: 'cors assets',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 365 * 24 * 60 * 60,
+        // 1 year
+      }),
+    ],
+  }),
+);
+
+workbox.routing.registerRoute(
+  /restdb\.io/,
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'db',
+  }),
+);
+
+workbox.routing.registerRoute(
+  /^\/.*$/,
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: 'local',
+  }),
+);
