@@ -1,35 +1,3 @@
-Notification.requestPermission().then(r => {
-  if (r === 'denied') return console.log('[notifications] denied');
-  if (r === 'default') return console.log('[notifications] skipped');
-
-  self.addEventListener('push', evt => {
-    console.log('[sw] Push:', evt);
-
-    let {title, body, icon, tag} = evt;
-
-    evt.waitUntil(self.registration.showNotification(title, {body, icon, tag}));
-  });
-
-  self.addEventListener('notificationclick', evt => {
-    console.log('[sw] Notification click:', evt.notification.tag);
-
-    evt.notification.close();
-
-    evt.waitUntil(
-      clients
-        .matchAll({
-          type: 'window',
-        })
-        .then(clist => {
-          let client = clist.filter(c => c.url === '/' && 'focus' in c)[0];
-
-          if (client) return client.focus();
-          else if (clients.openWindow) clients.openWindow('/');
-        }),
-    );
-  });
-});
-
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js',
 );
@@ -62,3 +30,30 @@ workbox.routing.registerRoute(
     cacheName: 'local',
   }),
 );
+
+self.addEventListener('push', evt => {
+  console.log('[sw] Push:', evt);
+
+  let {title, body, icon, tag} = evt;
+
+  evt.waitUntil(self.registration.showNotification(title, {body, icon, tag}));
+});
+
+self.addEventListener('notificationclick', evt => {
+  console.log('[sw] Notification click:', evt.notification.tag);
+
+  evt.notification.close();
+
+  evt.waitUntil(
+    clients
+      .matchAll({
+        type: 'window',
+      })
+      .then(clist => {
+        let client = clist.filter(c => c.url === '/' && 'focus' in c)[0];
+
+        if (client) return client.focus();
+        else if (clients.openWindow) clients.openWindow('/');
+      }),
+  );
+});
