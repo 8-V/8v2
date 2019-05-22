@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"/>
-        <meta charset="utf-8"/>
-        <meta name="Description" content="Домашка для 8-В класса."/>
-        <meta name="theme-color" content="#EEEEEE"/>
-        <title>8-B</title>
-        <link rel="manifest" href="/manifest.json"/>
-        <link rel="stylesheet" href="/app.css"/>
-        <link rel="stylesheet" href="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css"/>
-        <link rel="preconnect" href="https://homework-63c7.restdb.io/rest/hw"/>
-        <script src="https://unpkg.com/jquery@2.1/dist/jquery.min.js"></script>
-        <script src="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.js"></script>
-    </head>
-    <body>
-        <div data-role="page" id="two">
-            <div data-role="header">
-                <a href="index.html" data-transition="slide" data-direction="reverse" data-icon="back">Назад</a>
-                <h1>2 группа</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <form>
-                    <label for="search_hw2">Поиск:</label>
-                    <input data-type="search" id="search_hw2"/>
-                </form>
-                <div id="hw2" data-role="collapsibleset" data-filter="true" data-inset="true" data-input="#search_hw2"></div>
-            </div>
-            <script defer src="/two.js"></script>
-        </div>
-        <script src="/util/init.js"></script>
-    </body>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"
+    />
+    <meta charset="utf-8" />
+    <meta name="Description" content="Домашка для 8-В класса." />
+    <meta name="theme-color" content="#EEEEEE" />
+    <title>8-B</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/app.css" />
+    <link
+      rel="stylesheet"
+      crossorigin="anonymous"
+      href="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css"
+    />
+    <link
+      rel="preconnect"
+      crossorigin="anonymous"
+      href="https://homework-63c7.restdb.io/rest/hw"
+    />
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/jquery@2.1/dist/jquery.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.js"
+    ></script>
+  </head>
+  <body>
+    <div data-role="page" id="two">
+      <div data-role="header">
+        <a
+          href="index.html"
+          data-transition="slide"
+          data-direction="reverse"
+          data-icon="back"
+          >Назад</a
+        >
+        <h1>2 группа</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <label for="search_hw2">Поиск:</label>
+          <input data-type="search" id="search_hw2" />
+        </form>
+        <div
+          id="hw2"
+          data-role="collapsibleset"
+          data-filter="true"
+          data-inset="true"
+          data-input="#search_hw2"
+        ></div>
+      </div>
+      <script defer src="/two.js"></script>
+    </div>
+    <script src="/util/init.js"></script>
+  </body>
 </html>

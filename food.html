@@ -1,87 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"/>
-        <meta charset="utf-8"/>
-        <meta name="Description" content="Домашка для 8-В класса."/>
-        <meta name="theme-color" content="#EEEEEE"/>
-        <title>8-B</title>
-        <link rel="manifest" href="/manifest.json"/>
-        <link rel="stylesheet" href="/app.css"/>
-        <link rel="stylesheet" href="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css"/>
-        <script src="https://unpkg.com/jquery@2.1/dist/jquery.min.js"></script>
-        <script src="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.js"></script>
-        <script src="https://malsup.github.io/min/jquery.blockUI.min.js"></script>
-    </head>
-    <body>
-        <div data-role="page" id="food">
-            <div data-role="header">
-                <a href="index.html" data-transition="slide" data-direction="reverse" data-icon="back">Назад</a>
-                <h1>Счетчик порций</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <form>
-                    <div data-role="collapsible">
-                        <h4>Отметить</h4>
-                        <fieldset data-role="controlgroup" id="food-group">
-                            <label for="gaiduk">Гайдук</label>
-                            <input type="checkbox" id="gaiduk" name="35"/>
-                            <label for="egorov">Егоров</label>
-                            <input type="checkbox" id="egorov" name="30"/>
-                            <label for="kurilenko">Куриленко</label>
-                            <input type="checkbox" id="kurilenko" name="35"/>
-                            <label for="markov">Марков</label>
-                            <input type="checkbox" id="markov" name="30"/>
-                            <label for="mironenko">Мироненко</label>
-                            <input type="checkbox" id="mironenko" name="35"/>
-                            <label for="mironenko">Мирошниченко</label>
-                            <input type="checkbox" id="miroshnichenko" name="30"/>
-                            <label for="mineeva">Минеева</label>
-                            <input type="checkbox" id="mineeva" name="0"/>
-                            <label for="user">Мордак</label>
-                            <input type="checkbox" id="user" name="35"/>
-                            <label for="olekseenko">Олексеенко</label>
-                            <input type="checkbox" id="olekseenko" name="35"/>
-                            <label for="omelchenko">Омельченко</label>
-                            <input type="checkbox" id="omelchenko" name="5"/>
-                            <label for="pavlenko">Павленко</label>
-                            <input type="checkbox" id="pavlenko" name="30"/>
-                            <label for="chursinov">Чурсинов</label>
-                            <input type="checkbox" id="chursinov" name="35"/>
-                            <label for="poet">Высоцкий</label>
-                            <input type="checkbox" id="poet" name="35"/>
-                            <label for="katrich">Катрич</label>
-                            <input type="checkbox" id="katrich" name="30"/>
-                            <label for="morozov">Морозов</label>
-                            <input type="checkbox" id="morozov" name="35"/>
-                            <label for="proxorenko">Прохоренко</label>
-                            <input type="checkbox" id="proxorenko" name="0"/>
-                            <label for="ribchenko">Рыбочка</label>
-                            <input type="checkbox" id="ribchenko" name="30"/>
-                            <label for="sapin">Сапин</label>
-                            <input type="checkbox" id="sapin" name="35"/>
-                            <label for="smituk">Смитюк</label>
-                            <input type="checkbox" id="smituk" name="35"/>
-                            <label for="sukorukih">Сукоруких</label>
-                            <input type="checkbox" id="sukorukih" name="30"/>
-                            <label for="maschenko">Мащенко Полина</label>
-                            <input type="checkbox" id="maschenko" name="30"/>
-                            <label for="genius">Хорсун ДИМООООООН</label>
-                            <input type="checkbox" id="genius" name="30"/>
-                            <label for="chub">Чуб ДИМООООООН</label>
-                            <input type="checkbox" id="chub" name="35"/>
-                            <label for="taras">Яичков</label>
-                            <input type="checkbox" id="taras" name="30"/>
-                        </fieldset>
-                    </div>
-                    <div data-role="collapsible">
-                        <h4>Результат</h4>
-                        <p id="food-result"></p>
-                    </div>
-                </form>
-            </div>
-            <script defer src="/food.js"></script>
-        </div>
-        <script src="/util/init.js"></script>
-    </body>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1"
+    />
+    <meta charset="utf-8" />
+    <meta name="Description" content="Домашка для 8-В класса." />
+    <meta name="theme-color" content="#EEEEEE" />
+    <title>8-B</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/app.css" />
+    <link
+      rel="stylesheet"
+      crossorigin="anonymous"
+      href="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css"
+    />
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/jquery@2.1/dist/jquery.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://malsup.github.io/min/jquery.blockUI.min.js"
+    ></script>
+  </head>
+  <body>
+    <div data-role="page" id="food">
+      <div data-role="header">
+        <a
+          href="index.html"
+          data-transition="slide"
+          data-direction="reverse"
+          data-icon="back"
+          >Назад</a
+        >
+        <h1>Счетчик порций</h1>
+      </div>
+      <div role="main" class="ui-content">
+        <form>
+          <div data-role="collapsible">
+            <h4>Отметить</h4>
+            <fieldset data-role="controlgroup" id="food-group">
+              <label for="gaiduk">Гайдук</label>
+              <input type="checkbox" id="gaiduk" name="35" />
+              <label for="egorov">Егоров</label>
+              <input type="checkbox" id="egorov" name="30" />
+              <label for="kurilenko">Куриленко</label>
+              <input type="checkbox" id="kurilenko" name="35" />
+              <label for="markov">Марков</label>
+              <input type="checkbox" id="markov" name="30" />
+              <label for="mironenko">Мироненко</label>
+              <input type="checkbox" id="mironenko" name="35" />
+              <label for="mironenko">Мирошниченко</label>
+              <input type="checkbox" id="miroshnichenko" name="30" />
+              <label for="mineeva">Минеева</label>
+              <input type="checkbox" id="mineeva" name="0" />
+              <label for="user">Мордак</label>
+              <input type="checkbox" id="user" name="35" />
+              <label for="olekseenko">Олексеенко</label>
+              <input type="checkbox" id="olekseenko" name="35" />
+              <label for="omelchenko">Омельченко</label>
+              <input type="checkbox" id="omelchenko" name="5" />
+              <label for="pavlenko">Павленко</label>
+              <input type="checkbox" id="pavlenko" name="30" />
+              <label for="chursinov">Чурсинов</label>
+              <input type="checkbox" id="chursinov" name="35" />
+              <label for="poet">Высоцкий</label>
+              <input type="checkbox" id="poet" name="35" />
+              <label for="katrich">Катрич</label>
+              <input type="checkbox" id="katrich" name="30" />
+              <label for="morozov">Морозов</label>
+              <input type="checkbox" id="morozov" name="35" />
+              <label for="proxorenko">Прохоренко</label>
+              <input type="checkbox" id="proxorenko" name="0" />
+              <label for="ribchenko">Рыбочка</label>
+              <input type="checkbox" id="ribchenko" name="30" />
+              <label for="sapin">Сапин</label>
+              <input type="checkbox" id="sapin" name="35" />
+              <label for="smituk">Смитюк</label>
+              <input type="checkbox" id="smituk" name="35" />
+              <label for="sukorukih">Сукоруких</label>
+              <input type="checkbox" id="sukorukih" name="30" />
+              <label for="maschenko">Мащенко Полина</label>
+              <input type="checkbox" id="maschenko" name="30" />
+              <label for="genius">Хорсун ДИМООООООН</label>
+              <input type="checkbox" id="genius" name="30" />
+              <label for="chub">Чуб ДИМООООООН</label>
+              <input type="checkbox" id="chub" name="35" />
+              <label for="taras">Яичков</label>
+              <input type="checkbox" id="taras" name="30" />
+            </fieldset>
+          </div>
+          <div data-role="collapsible">
+            <h4>Результат</h4>
+            <p id="food-result"></p>
+          </div>
+        </form>
+      </div>
+      <script defer src="/food.js"></script>
+    </div>
+    <script src="/util/init.js"></script>
+  </body>
 </html>

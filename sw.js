@@ -1,41 +1,53 @@
+self.addEventListener('install', self.skipWaiting);
+
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js',
 );
 
-workbox.precaching.precacheAndRoute(['/', '/index.js', '/app.css']);
+const precache = [
+  '/app.css',
+  '/8v.webp',
+  '/contact.html',
+  '/food.html',
+  '/food.js',
+  '/one.html',
+  '/one.js',
+  '/rz.html',
+  '/rz.js',
+  '/two.html',
+  '/two.js',
+];
+
+const cors = [
+  'https://unpkg.com/jquery-mobile@1.4.1/dist/jquery.mobile.min.js',
+  'https://unpkg.com/jquery@2.1.4/dist/jquery.min.js',
+  'https://unpkg.com/jquery-mobile@1.4/dist/jquery.mobile.min.css',
+  'https://malsup.github.io/min/jquery.blockUI.min.js',
+];
+
+workbox.precaching.precacheAndRoute(precache);
 
 workbox.routing.registerRoute(
-  /(unpkg,gstatic)\.com/,
-  new workbox.strategies.CacheFirst({
-    cacheName: 'cors assets',
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxAgeSeconds: 365 * 24 * 60 * 60,
-        // 1 year
-      }),
-    ],
-  }),
+  /workbox/,
+  new workbox.strategies.StaleWhileRevalidate({cacheName: 'workbox'}),
 );
 
 workbox.routing.registerRoute(
-  /restdb\.io/,
-  new workbox.strategies.NetworkFirst({
-    cacheName: 'db',
-  }),
+  i => i.url in cors,
+  new workbox.strategies.StaleWhileRevalidate({cacheName: 'cors'}),
 );
 
 workbox.routing.registerRoute(
-  /^\/.*$/,
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: 'local',
-  }),
+  /^https:\/\/homework-63c7\.restdb\.io\/rest\//,
+  new workbox.strategies.NetworkFirst({cacheName: 'db'}),
 );
 
 self.addEventListener('push', evt => {
-  console.log('[sw] Push:');
-  console.dir(evt);
+  console.log('[sw] push');
 
-  let {title, body, icon, tag} = evt;
+  let body = (tag = title = evt.data.text());
+
+  let icon = '/icons/icon.hdpi.png';
 
   evt.waitUntil(self.registration.showNotification(title, {body, icon, tag}));
 });
