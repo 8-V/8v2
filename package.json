@@ -1,9 +1,0 @@
-{
-  "name": "8v2",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/tekirinka/8v2",
-  "author": "teki <teki@asd.f>",
-  "license": "MIT",
-  "private": true
-}
