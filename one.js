@@ -1,8 +1,8 @@
 let load_hw = async _ => {
   $.mobile.loading('show');
-  let hw = await fetch('https://homework-63c7.restdb.io/rest/email_inbound', {
+  let hw = await fetch('https://hhwwe-e468.restdb.io/rest/email_inbound', {
     method: 'GET',
-    headers: {'x-apikey': '5c6ecf1828ca2e129e8696e8'},
+    headers: {'x-apikey': '5d1d05031e3c8507f2caa053'},
   }).then(x => x.json());
 
   if ('message' in hw) {
