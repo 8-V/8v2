@@ -1,6 +1,6 @@
 let load_hw = async _ => {
   $.mobile.loading('show');
-  let hw = await fetch('https://hhwwe-e468.restdb.io/rest/hw', {
+  let hw = await fetch('https://hhwwe-e468.restdb.io/rest/hhww', {
     method: 'GET',
     headers: {'x-apikey': '5d1d05031e3c8507f2caa053'},
   }).then(x => x.json());
