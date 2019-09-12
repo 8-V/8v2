@@ -53,8 +53,3 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
   });
 }
-
-Notification.requestPermission().then(r => {
-  if (r === 'denied') return console.log('[notifications] denied');
-  if (r === 'default') return console.log('[notifications] skipped');
-});
