@@ -20,8 +20,8 @@ let load_hw = async _ => {
 let parse_hw = hw => {
   for (let predmet of hw) {
     let x = $(
-      `<div data-role="collapsible" data-filtertext="${predmet.subject}">`,
-    ).html(`<h3>${predmet.subject}</h3>${predmet.body}`);
+      `<div data-role="collapsible" data-filtertext="${predmet.title}">`,
+    ).html(`<h3>${predmet.title}</h3>${predmet.content}`);
     x.appendTo($('#hw1'));
   }
   return true;
